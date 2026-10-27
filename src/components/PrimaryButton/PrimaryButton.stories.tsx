@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { fn } from 'storybook/test';
 import { PrimaryButton } from './PrimaryButton';
 
@@ -23,5 +24,17 @@ export const Labels: Story = {
         <PrimaryButton key={label} {...args} label={label} />
       ))}
     </div>
+  ),
+};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  render: (args) => (
+    <StateGrid states={[
+      { label: 'Default', node: <PrimaryButton {...args} /> },
+      { label: 'Disabled', node: <PrimaryButton {...args} disabled /> },
+      { label: 'Full width', node: <div style={{ width: 358 }}><PrimaryButton {...args} fullWidth /></div> },
+    ]} />
   ),
 };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { TransactionList } from './TransactionList';
 
 const meta = {
@@ -27,4 +28,15 @@ export const Spent: Story = {
       { title: 'Pop Culture Speed Round entry', time: 'Yesterday, 6:30 PM', amount: -30 },
     ],
   },
+};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  render: (args) => (
+    <StateGrid states={[
+      { label: 'Earned (credits)', node: <TransactionList {...args} /> },
+      { label: 'Spent (debits)', node: <TransactionList {...args} {...Spent.args} /> },
+    ]} />
+  ),
 };

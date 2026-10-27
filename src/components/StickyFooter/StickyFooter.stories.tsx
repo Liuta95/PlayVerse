@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { PrimaryButton } from '../PrimaryButton';
 import { TextButton } from '../TextButton';
 import { StickyFooter } from './StickyFooter';
@@ -23,3 +24,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  render: (args) => (
+    <StateGrid states={[
+      { label: 'Button + link', node: <StickyFooter {...args} /> },
+      { label: 'Button only', node: <StickyFooter><PrimaryButton label="Claim Reward" /></StickyFooter> },
+    ]} />
+  ),
+};

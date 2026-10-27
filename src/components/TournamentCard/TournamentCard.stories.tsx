@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { fn } from 'storybook/test';
 import { TournamentCard } from './TournamentCard';
 
@@ -30,4 +31,17 @@ export const Featured: Story = {
     featured: true,
     joined: '1,204',
   },
+};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  render: (args) => (
+    <StateGrid states={[
+      { label: 'Default', node: <TournamentCard {...args} /> },
+      { label: 'Featured', node: <TournamentCard {...args} {...Featured.args} /> },
+      { label: 'Compact · featured', node: <TournamentCard {...args} compact featured /> },
+      { label: 'Compact', node: <TournamentCard {...args} title="Weekend Sports Rally" startsIn="01:20:00" entryFee={40} compact /> },
+    ]} />
+  ),
 };

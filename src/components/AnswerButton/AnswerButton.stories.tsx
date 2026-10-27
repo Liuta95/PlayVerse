@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { AnswerButton } from './AnswerButton';
 
 const meta = {
@@ -27,13 +28,18 @@ export const Incorrect: Story = { args: { label: 'Venus', state: 'incorrect', co
 export const Timeout: Story = { args: { state: 'timeout' } };
 
 export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
   render: () => (
-    <div style={{ display: 'grid', gap: 18 }}>
-      <AnswerButton label="Mars" />
-      <AnswerButton label="Mars" state="selected" />
-      <AnswerButton label="Mars" state="correct" />
-      <AnswerButton label="Venus" state="incorrect" correctAnswer="Mars" />
-      <AnswerButton label="Mars" state="timeout" />
-    </div>
+    <StateGrid states={[
+      { label: 'Default', node: <AnswerButton label="Mars" /> },
+      { label: 'Selected · locked in', node: <AnswerButton label="Mars" state="selected" /> },
+      { label: 'Correct', node: <AnswerButton label="Mars" state="correct" /> },
+      { label: 'Incorrect', node: <AnswerButton label="Venus" state="incorrect" correctAnswer="Mars" /> },
+      { label: 'Timeout · no answer', node: <AnswerButton label="Mars" state="timeout" /> },
+      { label: 'Dimmed (after lock-in)', node: <AnswerButton label="Venus" state="dimmed" /> },
+      { label: 'Missed (time ran out)', node: <AnswerButton label="Venus" state="missed" /> },
+      { label: 'Size = lg · correct', node: <AnswerButton label="Mars" size="lg" state="correct" /> },
+    ]} />
   ),
 };

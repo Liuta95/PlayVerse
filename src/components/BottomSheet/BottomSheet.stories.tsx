@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { fn } from 'storybook/test';
 import { PrimaryButton } from '../PrimaryButton';
 import { TextButton } from '../TextButton';
@@ -25,3 +26,22 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+/** The sheet has a single visual state; it is dismissed by unmounting. */
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  decorators: [(Story) => <div style={{ width: 390 }}><Story /></div>],
+  render: () => (
+    <StateGrid states={[{
+      label: 'Open',
+      node: (
+        <div className="pv-screen" style={{ height: 420 }}>
+          <BottomSheet>
+            <PrimaryButton label="Confirm" />
+          </BottomSheet>
+        </div>
+      ),
+    }]} />
+  ),
+};

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { StandingsList } from './StandingsList';
 
 const meta = {
@@ -21,3 +22,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const AroundYou: Story = {};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  render: (args) => (
+    <StateGrid states={[
+      { label: 'Around you', node: <StandingsList {...args} /> },
+      { label: 'Without you', node: <StandingsList entries={args.entries.filter((e) => !e.isYou)} /> },
+    ]} />
+  ),
+};

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { useState } from 'react';
 import { fn } from 'storybook/test';
 import { SegmentedControl } from './SegmentedControl';
@@ -23,4 +24,15 @@ export const Interactive: Story = {
     const [value, setValue] = useState(args.value);
     return <SegmentedControl {...args} value={value} onChange={setValue} />;
   },
+};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  render: (args) => (
+    <StateGrid states={options.map((value) => ({
+      label: `Selected = ${value}`,
+      node: <SegmentedControl {...args} value={value} />,
+    }))} />
+  ),
 };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { useState } from 'react';
 import { fn } from 'storybook/test';
 import { BottomNavBar, type NavTab } from './BottomNavBar';
@@ -26,4 +27,15 @@ export const Interactive: Story = {
     const [active, setActive] = useState<NavTab>(args.active);
     return <BottomNavBar active={active} onChange={(tab) => { setActive(tab); args.onChange?.(tab); }} />;
   },
+};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  render: (args) => (
+    <StateGrid states={(['Lobby', 'Leaderboard', 'Wallet'] as const).map((tab) => ({
+      label: `Active = ${tab}`,
+      node: <BottomNavBar {...args} active={tab} />,
+    }))} />
+  ),
 };

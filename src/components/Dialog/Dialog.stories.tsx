@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import clockGold from '../../assets/icons/clock-gold.svg';
 import wifiOff from '../../assets/icons/wifi-off.svg';
 import { IconBadge } from '../IconBadge';
@@ -31,4 +32,16 @@ export const Blocking: Story = {
     children: <div style={{ width: '100%', marginTop: 20 }}><SecondaryButton label="Retry Now" fullWidth compact /></div>,
   },
   decorators: [(Story) => <div style={{ width: 342 }}><Story /></div>],
+};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  decorators: [(Story) => <div style={{ width: 342 }}><Story /></div>],
+  render: () => (
+    <StateGrid states={[
+      { label: 'Size = sm', node: <Dialog {...Notice.args!} {...meta.args} size="sm" /> },
+      { label: 'Size = md · actions', node: <Dialog {...meta.args} {...Blocking.args} /> },
+    ]} />
+  ),
 };

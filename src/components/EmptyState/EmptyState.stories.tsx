@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import calendar from '../../assets/icons/calendar.svg';
 import users from '../../assets/icons/users.svg';
 import { IconBadge } from '../IconBadge';
@@ -34,4 +35,15 @@ export const TournamentFull: Story = {
     description: 'Friday Night Trivia Blitz has reached its player limit. Try one of these instead:',
     iconGap: 20,
   },
+};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  render: (args) => (
+    <StateGrid states={[
+      { label: 'With action', node: <EmptyState {...args} {...WithAction.args} /> },
+      { label: 'Description only', node: <EmptyState {...args} {...TournamentFull.args} /> },
+    ]} />
+  ),
 };

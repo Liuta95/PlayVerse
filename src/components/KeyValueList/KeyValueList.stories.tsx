@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { KeyValueList } from './KeyValueList';
 
 const meta = {
@@ -40,4 +41,17 @@ export const Boxed: Story = {
       { label: 'Balance after', value: '1,200 → 1,150 Coins' },
     ],
   },
+};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  render: (args) => (
+    <StateGrid states={[
+      { label: 'Table', node: <KeyValueList {...args} /> },
+      { label: 'Table · strong labels', node: <KeyValueList {...args} {...StrongLabels.args} /> },
+      { label: 'Boxed · dividers', node: <KeyValueList {...args} {...Boxed.args} /> },
+      { label: 'Boxed', node: <KeyValueList {...args} {...Boxed.args} dividers={false} /> },
+    ]} />
+  ),
 };

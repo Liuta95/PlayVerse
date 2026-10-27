@@ -5,6 +5,7 @@ import checkLarge from '../../assets/icons/check-large.svg';
 import clockGold from '../../assets/icons/clock-gold.svg';
 import users from '../../assets/icons/users.svg';
 import wifiOff from '../../assets/icons/wifi-off.svg';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { IconBadge } from './IconBadge';
 
 const meta = {
@@ -19,15 +20,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Success: Story = {};
 
-export const AllTones: Story = {
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
   render: () => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-      <IconBadge icon={checkLarge} iconSize={34} size={80} tone="accent" outlined />
-      <IconBadge icon={alertGold} iconSize={28} size={64} tone="gold" />
-      <IconBadge icon={wifiOff} iconSize={26} size={56} tone="danger" />
-      <IconBadge icon={users} iconSize={28} size={64} outlined />
-      <IconBadge icon={calendar} iconSize={32} size={76} outlined />
-      <IconBadge icon={clockGold} iconSize={24} size={52} />
-    </div>
+    <StateGrid row states={[
+      { label: 'Accent · outlined', node: <IconBadge icon={checkLarge} iconSize={34} size={80} tone="accent" outlined /> },
+      { label: 'Gold', node: <IconBadge icon={alertGold} iconSize={28} size={64} tone="gold" /> },
+      { label: 'Danger', node: <IconBadge icon={wifiOff} iconSize={26} size={56} tone="danger" /> },
+      { label: 'Neutral · outlined', node: <IconBadge icon={users} iconSize={28} size={64} outlined /> },
+      { label: 'Neutral · outlined lg', node: <IconBadge icon={calendar} iconSize={32} size={76} outlined /> },
+      { label: 'Neutral', node: <IconBadge icon={clockGold} iconSize={24} size={52} /> },
+    ]} />
   ),
 };

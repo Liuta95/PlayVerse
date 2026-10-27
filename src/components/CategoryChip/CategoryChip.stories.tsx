@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { StateGrid } from '../../../.storybook/StateGrid';
 import { fn } from 'storybook/test';
 import { CategoryChip } from './CategoryChip';
 
@@ -21,5 +22,16 @@ export const Group: Story = {
         <CategoryChip key={label} {...args} label={label} />
       ))}
     </div>
+  ),
+};
+
+export const AllStates: Story = {
+  // Show the story source: the generated JSX snippet can't serialize the states array
+  parameters: { docs: { source: { type: 'code' } } },
+  render: (args) => (
+    <StateGrid row states={[
+      { label: 'Default', node: <CategoryChip {...args} /> },
+      { label: 'Long label', node: <CategoryChip {...args} label="Speed Rounds" /> },
+    ]} />
   ),
 };
