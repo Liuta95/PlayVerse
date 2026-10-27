@@ -1,0 +1,37 @@
+.pv-balance-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 22px;
+  border: 1px solid var(--border-strong);
+  border-radius: 20px;
+  background: var(--surface);
+  line-height: normal;
+}
+
+.pv-balance-card__label {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.pv-balance-card__amount {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.pv-balance-card__amount img {
+  display: block;
+}
+
+.pv-balance-card__note {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}

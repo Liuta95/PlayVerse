@@ -1,0 +1,64 @@
+.pv-app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* Back + left-aligned title (e.g. Tournament Full) */
+.pv-app-header--back {
+  justify-content: flex-start;
+  gap: 6px;
+  padding-left: 8px;
+}
+
+.pv-app-header--back .pv-coin-chip {
+  margin-left: auto;
+}
+
+/* Back · centered title · chip (Tournament Details) */
+.pv-app-header--centered {
+  justify-content: space-between;
+  gap: 0;
+  padding: 0 12px;
+}
+
+.pv-app-header--centered .pv-coin-chip {
+  margin-left: 0;
+}
+
+.pv-app-header__back {
+  display: flex;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.pv-app-header__back img {
+  display: block;
+}
+
+.pv-app-header__title {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.pv-app-header__title--brand {
+  font-size: 19px;
+}
+
+.pv-app-header__title--page {
+  font-size: 18px;
+}
+
+.pv-app-header__title--sub {
+  font-size: 16px;
+}

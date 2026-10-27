@@ -1,0 +1,39 @@
+.pv-text-button {
+  /* block so wrappers don't inherit an extra line box */
+  display: block;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.pv-text-button--md {
+  font-size: 14px;
+}
+
+.pv-text-button--sm {
+  font-size: 13px;
+}
+
+.pv-text-button--secondary {
+  color: var(--text-secondary);
+}
+
+.pv-text-button--muted {
+  color: var(--text-muted);
+}
+
+.pv-text-button:hover {
+  color: var(--text);
+}
+
+.pv-text-button:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

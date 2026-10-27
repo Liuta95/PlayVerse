@@ -1,0 +1,15 @@
+.pv-wallet > * {
+  flex-shrink: 0;
+}
+
+.pv-wallet > .pv-balance-card {
+  margin-bottom: 26px;
+}
+
+.pv-wallet > .pv-secondary-button {
+  margin-bottom: 24px;
+}
+
+.pv-wallet > .pv-tabs {
+  margin-bottom: 14px;
+}

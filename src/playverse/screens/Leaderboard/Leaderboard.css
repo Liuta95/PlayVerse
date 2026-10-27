@@ -1,0 +1,13 @@
+.pv-leaderboard > .pv-segmented,
+.pv-leaderboard > .pv-tier-progress {
+  flex-shrink: 0;
+  margin-bottom: 20px;
+}
+
+.pv-leaderboard > .pv-section-header {
+  margin-bottom: 10px;
+}
+
+.pv-leaderboard > .pv-standings {
+  flex-shrink: 0;
+}

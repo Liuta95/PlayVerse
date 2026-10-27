@@ -1,0 +1,14 @@
+.pv-sticky-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+  padding: 14px 16px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.pv-sticky-footer > .pv-text-button {
+  align-self: stretch;
+}

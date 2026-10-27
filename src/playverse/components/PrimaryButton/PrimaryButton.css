@@ -1,0 +1,42 @@
+.pv-primary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 342px;
+  height: 40px;
+  padding: 0 24px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  box-shadow: 0 8px 10px rgba(109, 40, 217, 0.35);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.pv-primary-button--full {
+  width: 100%;
+}
+
+.pv-primary-button:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+
+.pv-primary-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.pv-primary-button:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 2px;
+}
+
+.pv-primary-button:disabled {
+  opacity: 0.45;
+  box-shadow: none;
+  cursor: not-allowed;
+}

@@ -1,0 +1,27 @@
+.pv-bottom-sheet__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.pv-bottom-sheet {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 20px 28px;
+  border-radius: 22px 22px 0 0;
+  background: var(--surface);
+}
+
+.pv-bottom-sheet__handle {
+  flex-shrink: 0;
+  width: 36px;
+  height: 4px;
+  margin-bottom: 18px;
+  border-radius: var(--radius-pill);
+  background: var(--border-strong);
+}

@@ -1,0 +1,69 @@
+.pv-register__art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 92px;
+  height: 92px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  background: rgba(249, 191, 36, 0.1);
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+}
+
+.pv-register__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.pv-register__heading h2 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.pv-register__heading button {
+  display: flex;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.pv-register__heading img {
+  display: block;
+}
+
+.pv-register__summary {
+  width: 100%;
+  margin: 0 0 18px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: normal;
+}
+
+.pv-register__note {
+  width: 100%;
+  margin: 10px 0 16px;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: normal;
+  text-align: center;
+}
+
+.pv-register__cancel {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 8px;
+}

@@ -1,0 +1,55 @@
+.pv-transactions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  overflow: hidden;
+  list-style: none;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.pv-transactions__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+}
+
+.pv-transactions__row + .pv-transactions__row {
+  border-top: 1px solid var(--border);
+}
+
+.pv-transactions__text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pv-transactions__title {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pv-transactions__time {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.pv-transactions__amount {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pv-transactions__amount.is-credit {
+  color: var(--success);
+}
+
+.pv-transactions__amount.is-debit {
+  color: var(--gold);
+}

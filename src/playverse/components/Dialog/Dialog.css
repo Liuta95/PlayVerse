@@ -1,0 +1,58 @@
+.pv-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.pv-dialog__title,
+.pv-dialog__description {
+  margin: 0;
+  line-height: normal;
+}
+
+.pv-dialog__title {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.pv-dialog__description {
+  width: 100%;
+  color: var(--text-secondary);
+}
+
+/* sm — "Time's up!" notice */
+.pv-dialog--sm {
+  width: 280px;
+  padding: 26px 24px;
+  border-radius: var(--radius-lg);
+}
+
+.pv-dialog--sm .pv-dialog__title {
+  margin: 22px 0 8px;
+  font-size: 17px;
+}
+
+.pv-dialog--sm .pv-dialog__description {
+  font-size: 13px;
+}
+
+/* md — "Connection lost" */
+.pv-dialog--md {
+  width: 100%;
+  padding: 28px 24px 24px;
+  border-radius: 20px;
+}
+
+.pv-dialog--md .pv-dialog__title {
+  margin: 16px 0 8px;
+  font-size: 19px;
+}
+
+.pv-dialog--md .pv-dialog__description {
+  font-size: 14px;
+}

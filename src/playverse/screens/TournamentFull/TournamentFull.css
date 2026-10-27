@@ -1,0 +1,12 @@
+.pv-full {
+  align-items: center;
+  padding: 36px 24px 0;
+}
+
+.pv-full__suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin: 30px 0 26px;
+}

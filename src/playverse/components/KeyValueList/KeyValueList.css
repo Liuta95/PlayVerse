@@ -1,0 +1,80 @@
+.pv-kv {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  line-height: normal;
+}
+
+.pv-kv__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.pv-kv dt {
+  color: var(--text-secondary);
+}
+
+.pv-kv dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.pv-kv__value--default {
+  color: var(--text);
+}
+
+.pv-kv__value--gold {
+  color: var(--gold);
+}
+
+.pv-kv__value--success {
+  color: var(--success);
+}
+
+/* table */
+.pv-kv--table {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.pv-kv--table .pv-kv__row {
+  padding: 14px 16px;
+}
+
+.pv-kv--table .pv-kv__row + .pv-kv__row {
+  border-top: 1px solid var(--border);
+}
+
+.pv-kv--strong .pv-kv__row {
+  align-items: center;
+  padding: 13px 16px;
+}
+
+.pv-kv--strong dt {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* boxed */
+.pv-kv--boxed {
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  font-size: 14px;
+}
+
+.pv-kv__divider {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: none;
+  background: var(--border);
+}

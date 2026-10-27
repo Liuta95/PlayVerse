@@ -1,0 +1,42 @@
+.pv-secondary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--accent-soft);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--accent-soft);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: normal;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.pv-secondary-button--full {
+  width: 100%;
+  padding: 13px 0;
+}
+
+.pv-secondary-button--hug {
+  padding: 12px 24px;
+}
+
+.pv-secondary-button--compact {
+  border-radius: var(--radius-sm);
+}
+
+.pv-secondary-button:hover:not(:disabled) {
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.pv-secondary-button:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 2px;
+}
+
+.pv-secondary-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

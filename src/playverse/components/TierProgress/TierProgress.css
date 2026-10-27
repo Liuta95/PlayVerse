@@ -1,0 +1,56 @@
+.pv-tier-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.pv-tier-progress img {
+  display: block;
+  flex-shrink: 0;
+}
+
+.pv-tier-progress__body {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pv-tier-progress__labels {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.pv-tier-progress__tier {
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pv-tier-progress__count {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pv-tier-progress__track {
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--border);
+  overflow: hidden;
+}
+
+.pv-tier-progress__track span {
+  display: block;
+  height: 100%;
+  background: var(--accent-soft);
+}
