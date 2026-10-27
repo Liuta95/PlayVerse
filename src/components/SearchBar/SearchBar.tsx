@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes } from 'react';
-import searchIcon from '../../../assets/icons/search.svg';
+import searchIcon from '../../assets/icons/search.svg';
 import './SearchBar.css';
 
 export type SearchBarProps = InputHTMLAttributes<HTMLInputElement>;

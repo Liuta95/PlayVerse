@@ -1,9 +1,9 @@
-import avatarStack from '../../../assets/icons/avatar-stack.svg';
-import { AppHeader } from '../../components/AppHeader/AppHeader';
-import { KeyValueList, type KeyValueItem } from '../../components/KeyValueList/KeyValueList';
-import { PrimaryButton } from '../../components/PrimaryButton/PrimaryButton';
-import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
-import { StickyFooter } from '../../components/StickyFooter/StickyFooter';
+import avatarStack from '../../assets/icons/avatar-stack.svg';
+import { AppHeader } from '../../components/AppHeader';
+import { KeyValueList, type KeyValueItem } from '../../components/KeyValueList';
+import { PrimaryButton } from '../../components/PrimaryButton';
+import { SectionHeader } from '../../components/SectionHeader';
+import { StickyFooter } from '../../components/StickyFooter';
 import './TournamentDetails.css';
 
 export interface TournamentDetailsProps {

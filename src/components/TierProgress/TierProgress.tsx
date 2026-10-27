@@ -1,4 +1,4 @@
-import trophyGold from '../../../assets/icons/trophy-gold.svg';
+import trophyGold from '../../assets/icons/trophy-gold.svg';
 import './TierProgress.css';
 
 export interface TierProgressProps {

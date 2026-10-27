@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import alertGold from '../../../assets/icons/alert-gold.svg';
-import calendar from '../../../assets/icons/calendar.svg';
-import checkLarge from '../../../assets/icons/check-large.svg';
-import clockGold from '../../../assets/icons/clock-gold.svg';
-import users from '../../../assets/icons/users.svg';
-import wifiOff from '../../../assets/icons/wifi-off.svg';
+import alertGold from '../../assets/icons/alert-gold.svg';
+import calendar from '../../assets/icons/calendar.svg';
+import checkLarge from '../../assets/icons/check-large.svg';
+import clockGold from '../../assets/icons/clock-gold.svg';
+import users from '../../assets/icons/users.svg';
+import wifiOff from '../../assets/icons/wifi-off.svg';
 import { IconBadge } from './IconBadge';
 
 const meta = {

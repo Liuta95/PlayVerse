@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import clockGold from '../../../assets/icons/clock-gold.svg';
-import wifiOff from '../../../assets/icons/wifi-off.svg';
-import { IconBadge } from '../IconBadge/IconBadge';
-import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
+import clockGold from '../../assets/icons/clock-gold.svg';
+import wifiOff from '../../assets/icons/wifi-off.svg';
+import { IconBadge } from '../IconBadge';
+import { SecondaryButton } from '../SecondaryButton';
 import { Dialog } from './Dialog';
 
 const meta = {

@@ -1,10 +1,10 @@
-import wifiOff from '../../../assets/icons/wifi-off.svg';
-import { AnswerButton } from '../../components/AnswerButton/AnswerButton';
-import { Dialog } from '../../components/Dialog/Dialog';
-import { IconBadge } from '../../components/IconBadge/IconBadge';
-import { ProgressSegments } from '../../components/QuizTopBar/QuizTopBar';
-import { SecondaryButton } from '../../components/SecondaryButton/SecondaryButton';
-import { TextButton } from '../../components/TextButton/TextButton';
+import wifiOff from '../../assets/icons/wifi-off.svg';
+import { AnswerButton } from '../../components/AnswerButton';
+import { Dialog } from '../../components/Dialog';
+import { IconBadge } from '../../components/IconBadge';
+import { ProgressSegments } from '../../components/QuizTopBar';
+import { SecondaryButton } from '../../components/SecondaryButton';
+import { TextButton } from '../../components/TextButton';
 import './ConnectionLost.css';
 
 export interface ConnectionLostProps {

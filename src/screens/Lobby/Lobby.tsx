@@ -1,16 +1,16 @@
-import buzzer from '../../../assets/icons/quiz-buzzer.svg';
-import badgeBg from '../../../assets/icons/categories-badge-bg.svg';
-import badgeStroke from '../../../assets/icons/categories-badge-stroke.svg';
-import calendar from '../../../assets/icons/calendar.svg';
-import { AppHeader } from '../../components/AppHeader/AppHeader';
-import { BottomNavBar } from '../../components/BottomNavBar/BottomNavBar';
-import { CategoryChip } from '../../components/CategoryChip/CategoryChip';
-import { EmptyState } from '../../components/EmptyState/EmptyState';
-import { IconBadge } from '../../components/IconBadge/IconBadge';
-import { SearchBar } from '../../components/SearchBar/SearchBar';
-import { SecondaryButton } from '../../components/SecondaryButton/SecondaryButton';
-import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
-import { TournamentCard, type TournamentCardProps } from '../../components/TournamentCard/TournamentCard';
+import buzzer from '../../assets/icons/quiz-buzzer.svg';
+import badgeBg from '../../assets/icons/categories-badge-bg.svg';
+import badgeStroke from '../../assets/icons/categories-badge-stroke.svg';
+import calendar from '../../assets/icons/calendar.svg';
+import { AppHeader } from '../../components/AppHeader';
+import { BottomNavBar } from '../../components/BottomNavBar';
+import { CategoryChip } from '../../components/CategoryChip';
+import { EmptyState } from '../../components/EmptyState';
+import { IconBadge } from '../../components/IconBadge';
+import { SearchBar } from '../../components/SearchBar';
+import { SecondaryButton } from '../../components/SecondaryButton';
+import { SectionHeader } from '../../components/SectionHeader';
+import { TournamentCard, type TournamentCardProps } from '../../components/TournamentCard';
 import './Lobby.css';
 
 const CategoriesBadge = () => (

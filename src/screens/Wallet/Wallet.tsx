@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { AppHeader } from '../../components/AppHeader/AppHeader';
-import { BalanceCard } from '../../components/BalanceCard/BalanceCard';
-import { BottomNavBar } from '../../components/BottomNavBar/BottomNavBar';
-import { SecondaryButton } from '../../components/SecondaryButton/SecondaryButton';
-import { Tabs } from '../../components/Tabs/Tabs';
-import { TransactionList, type Transaction } from '../../components/TransactionList/TransactionList';
+import { AppHeader } from '../../components/AppHeader';
+import { BalanceCard } from '../../components/BalanceCard';
+import { BottomNavBar } from '../../components/BottomNavBar';
+import { SecondaryButton } from '../../components/SecondaryButton';
+import { Tabs } from '../../components/Tabs';
+import { TransactionList, type Transaction } from '../../components/TransactionList';
 import './Wallet.css';
 
 const views = ['Earned', 'Spent'] as const;

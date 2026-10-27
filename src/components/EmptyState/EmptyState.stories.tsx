@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import calendar from '../../../assets/icons/calendar.svg';
-import users from '../../../assets/icons/users.svg';
-import { IconBadge } from '../IconBadge/IconBadge';
-import { SecondaryButton } from '../SecondaryButton/SecondaryButton';
+import calendar from '../../assets/icons/calendar.svg';
+import users from '../../assets/icons/users.svg';
+import { IconBadge } from '../IconBadge';
+import { SecondaryButton } from '../SecondaryButton';
 import { EmptyState } from './EmptyState';
 
 const meta = {

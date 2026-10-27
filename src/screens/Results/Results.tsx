@@ -1,11 +1,11 @@
-import flame from '../../../assets/icons/flame.svg';
-import rankUp from '../../../assets/icons/rank-up.svg';
-import { AppHeader } from '../../components/AppHeader/AppHeader';
-import { Pill } from '../../components/Pill/Pill';
-import { PrimaryButton } from '../../components/PrimaryButton/PrimaryButton';
-import { StatTile } from '../../components/StatTile/StatTile';
-import { StickyFooter } from '../../components/StickyFooter/StickyFooter';
-import { TextButton } from '../../components/TextButton/TextButton';
+import flame from '../../assets/icons/flame.svg';
+import rankUp from '../../assets/icons/rank-up.svg';
+import { AppHeader } from '../../components/AppHeader';
+import { Pill } from '../../components/Pill';
+import { PrimaryButton } from '../../components/PrimaryButton';
+import { StatTile } from '../../components/StatTile';
+import { StickyFooter } from '../../components/StickyFooter';
+import { TextButton } from '../../components/TextButton';
 import './Results.css';
 
 export interface ResultsProps {

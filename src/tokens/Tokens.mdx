@@ -1,23 +1,25 @@
 import { Meta, ColorPalette, ColorItem, Typeset } from '@storybook/addon-docs/blocks';
+import tokens from './tokens.json';
+
+export const colors = Object.entries(tokens).filter(([key, t]) => !key.startsWith('$') && t.$type === 'color');
 
 <Meta title="PlayVerse/Foundations" />
 
 # PlayVerse foundations
 
-Design tokens from the PlayVerse Figma file. They live as CSS variables in `src/playverse/tokens.css`.
+Tokens come from Figma Variables into `src/tokens/tokens.json` (W3C DTCG). `npm run tokens` generates `src/tokens/tokens.css` from it — never edit either by hand.
 
 ## Colors
 
 <ColorPalette>
-  <ColorItem title="Background" subtitle="--bg · --surface · --surface-2" colors={{ bg: '#101014', surface: '#1a1a21', 'surface-2': '#222229' }} />
-  <ColorItem title="Borders" subtitle="--border · --border-strong" colors={{ border: '#2b2b33', 'border-strong': '#3d3d47' }} />
-  <ColorItem title="Text" subtitle="--text · --text-secondary · --text-muted" colors={{ text: '#f5f5f6', secondary: '#a3a3ad', muted: '#6e6e78' }} />
-  <ColorItem title="Accent" subtitle="--accent · --accent-soft" colors={{ accent: '#6d28d9', 'accent-soft': '#9266f7' }} />
-  <ColorItem title="Status" subtitle="--gold · --success · --danger" colors={{ gold: '#fbbf24', success: '#34d399', danger: '#f87171' }} />
-  <ColorItem title="Rewards" subtitle="--xp · --streak" colors={{ xp: '#38bdf8', streak: '#fb923c' }} />
+  {colors.map(([name, t]) => (
+    <ColorItem key={name} title={name} subtitle={`--${name}`} colors={{ [name]: t.$value }} />
+  ))}
 </ColorPalette>
 
 ## Typography
+
+Not tokenized yet — Figma has no type variables. Current values live in `src/styles/base.css`.
 
 **Display — Space Grotesk Bold** (titles, buttons)
 
@@ -26,7 +28,3 @@ Design tokens from the PlayVerse Figma file. They live as CSS variables in `src/
 **Body — Manrope** (everything else; 400 / 600 / 700)
 
 <Typeset fontFamily="'Manrope Variable', sans-serif" fontWeight={600} fontSizes={[11, 12, 13, 14]} sampleText="5 questions · 15s each" />
-
-## Radius
-
-`--radius-sm` 12px (search) · `--radius-md` 14px (buttons, answers) · `--radius-lg` 18px (cards) · `--radius-pill` 999px (chips)

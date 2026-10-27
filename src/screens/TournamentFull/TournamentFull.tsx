@@ -1,9 +1,9 @@
-import users from '../../../assets/icons/users.svg';
-import { AppHeader } from '../../components/AppHeader/AppHeader';
-import { EmptyState } from '../../components/EmptyState/EmptyState';
-import { IconBadge } from '../../components/IconBadge/IconBadge';
-import { TextButton } from '../../components/TextButton/TextButton';
-import { TournamentCard, type TournamentCardProps } from '../../components/TournamentCard/TournamentCard';
+import users from '../../assets/icons/users.svg';
+import { AppHeader } from '../../components/AppHeader';
+import { EmptyState } from '../../components/EmptyState';
+import { IconBadge } from '../../components/IconBadge';
+import { TextButton } from '../../components/TextButton';
+import { TournamentCard, type TournamentCardProps } from '../../components/TournamentCard';
 import './TournamentFull.css';
 
 export interface TournamentFullProps {

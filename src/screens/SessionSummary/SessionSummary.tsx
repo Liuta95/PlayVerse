@@ -1,8 +1,8 @@
-import { AppHeader } from '../../components/AppHeader/AppHeader';
-import { KeyValueList, type KeyValueItem } from '../../components/KeyValueList/KeyValueList';
-import { PrimaryButton } from '../../components/PrimaryButton/PrimaryButton';
-import { StickyFooter } from '../../components/StickyFooter/StickyFooter';
-import { TextButton } from '../../components/TextButton/TextButton';
+import { AppHeader } from '../../components/AppHeader';
+import { KeyValueList, type KeyValueItem } from '../../components/KeyValueList';
+import { PrimaryButton } from '../../components/PrimaryButton';
+import { StickyFooter } from '../../components/StickyFooter';
+import { TextButton } from '../../components/TextButton';
 import './SessionSummary.css';
 
 export interface SessionSummaryProps {

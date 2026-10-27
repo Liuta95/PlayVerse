@@ -1,9 +1,9 @@
-import lobby from '../../../assets/icons/nav-lobby.svg';
-import lobbyActive from '../../../assets/icons/nav-lobby-active.svg';
-import leaderboard from '../../../assets/icons/nav-leaderboard.svg';
-import leaderboardActive from '../../../assets/icons/nav-leaderboard-active.svg';
-import wallet from '../../../assets/icons/nav-wallet.svg';
-import walletActive from '../../../assets/icons/nav-wallet-active.svg';
+import lobby from '../../assets/icons/nav-lobby.svg';
+import lobbyActive from '../../assets/icons/nav-lobby-active.svg';
+import leaderboard from '../../assets/icons/nav-leaderboard.svg';
+import leaderboardActive from '../../assets/icons/nav-leaderboard-active.svg';
+import wallet from '../../assets/icons/nav-wallet.svg';
+import walletActive from '../../assets/icons/nav-wallet-active.svg';
 import './BottomNavBar.css';
 
 export type NavTab = 'Lobby' | 'Leaderboard' | 'Wallet';

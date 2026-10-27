@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
-import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
-import { TextButton } from '../TextButton/TextButton';
+import { PrimaryButton } from '../PrimaryButton';
+import { TextButton } from '../TextButton';
 import { BottomSheet } from './BottomSheet';
 
 const meta = {

@@ -1,6 +1,6 @@
-import checkTiny from '../../../assets/icons/check-tiny.svg';
-import closeSmall from '../../../assets/icons/close-small.svg';
-import { Pill } from '../Pill/Pill';
+import checkTiny from '../../assets/icons/check-tiny.svg';
+import closeSmall from '../../assets/icons/close-small.svg';
+import { Pill } from '../Pill';
 import './QuizTopBar.css';
 
 export interface ProgressSegmentsProps {

@@ -1,8 +1,8 @@
-import checkLarge from '../../../assets/icons/check-large.svg';
-import closeIcon from '../../../assets/icons/close.svg';
-import { IconBadge } from '../../components/IconBadge/IconBadge';
-import { PrimaryButton } from '../../components/PrimaryButton/PrimaryButton';
-import { TextButton } from '../../components/TextButton/TextButton';
+import checkLarge from '../../assets/icons/check-large.svg';
+import closeIcon from '../../assets/icons/close.svg';
+import { IconBadge } from '../../components/IconBadge';
+import { PrimaryButton } from '../../components/PrimaryButton';
+import { TextButton } from '../../components/TextButton';
 import './ReadyToPlay.css';
 
 export interface ReadyToPlayProps {

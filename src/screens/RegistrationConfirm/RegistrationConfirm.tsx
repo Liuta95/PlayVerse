@@ -1,8 +1,8 @@
-import closeIcon from '../../../assets/icons/close.svg';
-import { BottomSheet } from '../../components/BottomSheet/BottomSheet';
-import { KeyValueList } from '../../components/KeyValueList/KeyValueList';
-import { PrimaryButton } from '../../components/PrimaryButton/PrimaryButton';
-import { TextButton } from '../../components/TextButton/TextButton';
+import closeIcon from '../../assets/icons/close.svg';
+import { BottomSheet } from '../../components/BottomSheet';
+import { KeyValueList } from '../../components/KeyValueList';
+import { PrimaryButton } from '../../components/PrimaryButton';
+import { TextButton } from '../../components/TextButton';
 import './RegistrationConfirm.css';
 
 export interface RegistrationConfirmProps {

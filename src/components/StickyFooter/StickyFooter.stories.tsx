@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
-import { TextButton } from '../TextButton/TextButton';
+import { PrimaryButton } from '../PrimaryButton';
+import { TextButton } from '../TextButton';
 import { StickyFooter } from './StickyFooter';
 
 const meta = {

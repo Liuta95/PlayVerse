@@ -1,10 +1,10 @@
-import alertGold from '../../../assets/icons/alert-gold.svg';
-import { BottomSheet } from '../../components/BottomSheet/BottomSheet';
-import { EmptyState } from '../../components/EmptyState/EmptyState';
-import { IconBadge } from '../../components/IconBadge/IconBadge';
-import { KeyValueList } from '../../components/KeyValueList/KeyValueList';
-import { PrimaryButton } from '../../components/PrimaryButton/PrimaryButton';
-import { TextButton } from '../../components/TextButton/TextButton';
+import alertGold from '../../assets/icons/alert-gold.svg';
+import { BottomSheet } from '../../components/BottomSheet';
+import { EmptyState } from '../../components/EmptyState';
+import { IconBadge } from '../../components/IconBadge';
+import { KeyValueList } from '../../components/KeyValueList';
+import { PrimaryButton } from '../../components/PrimaryButton';
+import { TextButton } from '../../components/TextButton';
 import './InsufficientCoins.css';
 
 export interface InsufficientCoinsProps {

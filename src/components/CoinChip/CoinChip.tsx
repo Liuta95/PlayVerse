@@ -1,4 +1,4 @@
-import coinIcon from '../../../assets/icons/coin.svg';
+import coinIcon from '../../assets/icons/coin.svg';
 import './CoinChip.css';
 
 export interface CoinChipProps {

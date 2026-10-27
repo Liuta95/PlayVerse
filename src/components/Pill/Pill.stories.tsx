@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import checkTiny from '../../../assets/icons/check-tiny.svg';
-import flame from '../../../assets/icons/flame.svg';
+import checkTiny from '../../assets/icons/check-tiny.svg';
+import flame from '../../assets/icons/flame.svg';
 import { Pill } from './Pill';
 
 const meta = {

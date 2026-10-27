@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { AppHeader } from '../../components/AppHeader/AppHeader';
-import { BottomNavBar } from '../../components/BottomNavBar/BottomNavBar';
-import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
-import { SegmentedControl } from '../../components/SegmentedControl/SegmentedControl';
-import { StandingsList, type Standing } from '../../components/StandingsList/StandingsList';
-import { TierProgress } from '../../components/TierProgress/TierProgress';
+import { AppHeader } from '../../components/AppHeader';
+import { BottomNavBar } from '../../components/BottomNavBar';
+import { SectionHeader } from '../../components/SectionHeader';
+import { SegmentedControl } from '../../components/SegmentedControl';
+import { StandingsList, type Standing } from '../../components/StandingsList';
+import { TierProgress } from '../../components/TierProgress';
 import './Leaderboard.css';
 
 const scopes = ['Global', 'Friends'] as const;

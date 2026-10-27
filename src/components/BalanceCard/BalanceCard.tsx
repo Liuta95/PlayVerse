@@ -1,4 +1,4 @@
-import coinLarge from '../../../assets/icons/coin-large.svg';
+import coinLarge from '../../assets/icons/coin-large.svg';
 import './BalanceCard.css';
 
 export interface BalanceCardProps {

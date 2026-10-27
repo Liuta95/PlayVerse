@@ -1,8 +1,8 @@
-import correctIcon from '../../../assets/icons/answer-correct.svg';
-import correctIconLg from '../../../assets/icons/answer-correct-lg.svg';
-import incorrectIcon from '../../../assets/icons/answer-incorrect.svg';
-import timeoutIcon from '../../../assets/icons/answer-timeout.svg';
-import checkSmall from '../../../assets/icons/check-small.svg';
+import correctIcon from '../../assets/icons/answer-correct.svg';
+import correctIconLg from '../../assets/icons/answer-correct-lg.svg';
+import incorrectIcon from '../../assets/icons/answer-incorrect.svg';
+import timeoutIcon from '../../assets/icons/answer-timeout.svg';
+import checkSmall from '../../assets/icons/check-small.svg';
 import './AnswerButton.css';
 
 /**

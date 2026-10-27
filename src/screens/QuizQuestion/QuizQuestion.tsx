@@ -1,9 +1,9 @@
-import clockGold from '../../../assets/icons/clock-gold.svg';
-import { AnswerButton, type AnswerState } from '../../components/AnswerButton/AnswerButton';
-import { Dialog } from '../../components/Dialog/Dialog';
-import { IconBadge } from '../../components/IconBadge/IconBadge';
-import { Pill } from '../../components/Pill/Pill';
-import { QuizTopBar } from '../../components/QuizTopBar/QuizTopBar';
+import clockGold from '../../assets/icons/clock-gold.svg';
+import { AnswerButton, type AnswerState } from '../../components/AnswerButton';
+import { Dialog } from '../../components/Dialog';
+import { IconBadge } from '../../components/IconBadge';
+import { Pill } from '../../components/Pill';
+import { QuizTopBar } from '../../components/QuizTopBar';
 import './QuizQuestion.css';
 
 export type QuizPhase = 'answering' | 'feedback' | 'timeout';

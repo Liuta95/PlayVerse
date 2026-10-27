@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react-vite'
-import '../src/playverse/tokens.css'
+import '../src/tokens/tokens.css'
+import '../src/styles/base.css'
 
 const preview: Preview = {
   decorators: [

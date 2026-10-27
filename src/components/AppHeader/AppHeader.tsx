@@ -1,5 +1,5 @@
-import backIcon from '../../../assets/icons/back.svg';
-import { CoinChip } from '../CoinChip/CoinChip';
+import backIcon from '../../assets/icons/back.svg';
+import { CoinChip } from '../CoinChip';
 import './AppHeader.css';
 
 export interface AppHeaderProps {
