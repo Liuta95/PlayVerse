@@ -18,7 +18,9 @@ const walk = (node: Record<string, unknown>, path: string[]) => {
 walk(tokens as Record<string, unknown>, []);
 const byPath = new Map(flat.map((t) => [t.path, t.token]));
 
-const cssVar = (path: string) => `--${path.replace(/[._\s/]+/g, '-').toLowerCase()}`;
+// Same rule as scripts/build-tokens.mjs: camelCase is split (BottomNavBar → bottom-nav-bar).
+const cssVar = (path: string) =>
+  `--${path.replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/[._\s/]+/g, '-').toLowerCase()}`;
 const aliasOf = (token: Token) =>
   typeof token.$value === 'string' && token.$value.startsWith('{') ? token.$value.slice(1, -1) : null;
 const resolve = (token: Token): Token => {
@@ -88,13 +90,15 @@ export const ColorRamps = () => {
   );
 };
 
-const SEMANTIC_GROUPS = ['text', 'background', 'stroke', 'icon', 'coin', 'chips', 'sidebar', 'inputs', 'buttons'];
+const SEMANTIC_GROUPS = ['action', 'content', 'surface', 'border', 'feedback', 'text', 'background', 'stroke', 'icon'];
+const COMPONENT_GROUPS = ['buttons', 'chips', 'inputs', 'sidebar', 'checkboxes', 'coins', 'app-bars', 'BottomNavBar', 'Alert'];
 
-/** Semantic (Component Colors) tokens. Each row shows the alias it points to. */
-export const SemanticColors = () => (
+/** Token groups with the alias each token points to. */
+const TokenGroups = ({ groups }: { groups: string[] }) => (
   <Panel>
-    {SEMANTIC_GROUPS.map((group) => {
+    {groups.map((group) => {
       const rows = flat.filter((t) => t.path.startsWith(`${group}.`));
+      if (!rows.length) return null;
       return (
         <details key={group} open={rows.length <= 12} style={{ marginBottom: 'var(--spacing-16)' }}>
           <summary style={{ cursor: 'pointer', fontWeight: 'var(--font-weight-bold)', textTransform: 'capitalize' }}>
@@ -119,6 +123,12 @@ export const SemanticColors = () => (
     })}
   </Panel>
 );
+
+/** Level 2: semantic tokens (aliases of primitives). */
+export const SemanticColors = () => <TokenGroups groups={SEMANTIC_GROUPS} />;
+
+/** Level 3: component tokens (aliases of semantic tokens, or of primitives where no semantic token exists yet). */
+export const ComponentColors = () => <TokenGroups groups={COMPONENT_GROUPS} />;
 
 /** Spacing + radius scales. */
 export const Scales = () => (

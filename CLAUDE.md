@@ -66,31 +66,35 @@ npm run build-storybook
 
 ## 4. Токены
 
-Источник правды — **переменные Figma**. Они выгружаются в `src/tokens/tokens.json` (W3C DTCG, 269 токенов), оттуда `npm run tokens` генерирует `src/tokens/tokens.css` (CSS-переменные в `:root`). Оба файла руками не править.
+Источник правды — **переменные Figma**. Они выгружаются в `src/tokens/tokens.json` (W3C DTCG, 351 токен), оттуда `npm run tokens` генерирует `src/tokens/tokens.css` (CSS-переменные в `:root`). Оба файла руками не править.
 
-| Коллекция Figma | Путь токена | CSS-переменная | Кол-во |
-| --- | --- | --- | --- |
-| Colors | `color.<hue>.<step>` | `--color-gray-900` | 47 |
-| Component Colors (алиасы на Colors) | `<группа>.<имя>` | `--text-primary`, `--buttons-primary-default-background` | 169 |
-| Spacing | `spacing.<n>` | `--spacing-16` | 13 |
-| Radius | `radius.<n>` | `--radius-12`, `--radius-full` | 10 |
-| Typography | `font.*`, `letter-spacing.*`, `line-height.*` | `--font-size-14`, `--font-family-body` | 30 |
+**Три уровня, каждый ссылается на предыдущий:**
 
-- Режим во всех коллекциях один (`Value`), тёмная тема единственная.
+| Уровень | Коллекция Figma | Путь токена | CSS-переменная | Кол-во |
+| --- | --- | --- | --- | --- |
+| 1. Primitives | `Primitives` (раньше `Colors`) | `color.<hue>.<step>` | `--color-gray-900` | 47 |
+| 2. Semantic | `Semantic` (новая) + старые `text`, `background`, `stroke`, `icon`, `coins` в `Component Colors` | `action.*`, `content.*`, `surface.*`, `border.*`, `feedback.*`, `text.*` … | `--action-primary`, `--content-muted`, `--surface-field`, `--border-strong`, `--feedback-success-bg` | 35 + ~31 |
+| 3. Component | `Component Colors` | `buttons.*`, `chips.*`, `inputs.*`, `sidebar.*`, `checkboxes.*`, `coins.*`, `app-bars.*`, `BottomNavBar.*`, `Alert.*` | `--buttons-primary-default-background` | ~185 |
+| — | `Spacing`, `Radius`, `Typography` | `spacing.*`, `radius.*`, `font.*`, `letter-spacing.*`, `line-height.*` | `--spacing-16`, `--radius-12`, `--font-size-14` | 13 / 10 / 30 |
+
+Цепочка: `--buttons-primary-default-background` → `--action-primary` → `--color-purple-700` → `#6d28d9`.
+
+- `buttons.*`, `chips.*`, `inputs.*`, `sidebar.*` ссылаются на `Semantic` (сделано в Figma в ноябре 2026, цвета проверены до/после: все 216 токенов совпали). `checkboxes.*`, `coins.*`, `app-bars.*`, `BottomNavBar.*`, `Alert.*` пока ссылаются прямо на primitives (`Alert` частично на «сырые» цвета с прозрачностью) — их ещё не переносили на уровень Semantic.
+- Старые смысловые `text.*`, `background.*`, `stroke.*`, `icon.*` остались в `Component Colors`: API Figma не умеет переносить переменные между коллекциями. Новые `content.*` частично дублируют `text.*` по смыслу.
+- Режим во всех коллекциях один (`Value`), тёмная тема единственная. Light/Dark не делали: добавлять режимы нужно в коллекцию `Semantic`.
 - Шкалы: spacing 0, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44. Radius 4–40 и `full` (999). Шрифты: Space Grotesk (display), Manrope (body), Inter (токен есть, файлы не подключены).
-- Имя токена = имя переменной Figma в kebab-case, без имени коллекции (кроме `color` и `spacing`).
+- Имя токена = имя переменной Figma в kebab-case; префикс `color` для Primitives и `spacing` для Spacing, у остальных коллекций префикса нет. Camel-case разбивается (`BottomNavBar` → `--bottom-nav-bar-…`), то же правило в `Foundations.tsx`.
 - Тонкости выгрузки: `line-height.*` хранится как `150%`/`160%` (в Figma числа 150/160); `letter-spacing.*` в `px`; полупрозрачные цвета в 8-значном hex; пробелы и скобки в именах чистятся (`purple/500 (14%)` → `purple.500-14pct`, `green/400 2` → `green.400-2`).
-- Странные имена в Figma, которые стоит переименовать: `gray/shadowneutral-50`, `gray/shadow_neutral-25`, варианты `… 2`.
-- У большинства переменных в Figma одинаковое ложное описание «Answer Button incorrect icon…». В токены оно не переносится.
+- Странные имена в Figma, которые стоит переименовать: `gray/shadowneutral-50`, `gray/shadow_neutral-25`, варианты `… 2`. `background/disabled` = `gray/200` (светлый фон на тёмной теме) похоже на ошибку.
 - Переменная `answer card/foreground` есть в Figma, но не попала в выгрузку. Её значение = `gray/50`, в коде используется `--color-gray-50`.
-- **Обновление токенов:** пользователь меняет Variables в Figma → сказать Claude «перевыгрузи токены» → он читает переменные через `use_figma`, перезаписывает `tokens.json`, запускает `npm run tokens`, проверяет что все `var()` существуют. Проект сам к Figma не подключён.
+- **Обновление токенов:** пользователь меняет Variables в Figma → сказать Claude «перевыгрузи токены» → он читает переменные через `use_figma` (все коллекции, путь = префикс коллекции + имя), перезаписывает `tokens.json`, запускает `npm run tokens`, проверяет что все `var()` существуют. Проект сам к Figma не подключён. Файл Figma меняется (появляются новые группы токенов), поэтому всегда выгружать заново целиком, а не по памяти.
 
 Документация токенов — страница **PlayVerse / Foundations** в Storybook (`src/tokens/Foundations.mdx` + `Foundations.tsx`). Она читает `tokens.json` и рисует цвета (с цепочками алиасов), шкалы и типографику.
 
 ## 5. Правила кода
 
 1. **Никакого хардкода** цветов, отступов, радиусов, шрифтов. Только `var(--token)`. Если нужного токена нет — остановиться и спросить, не придумывать. Допустимые исключения (токена нет): высота 48 = `2 × spacing-24`, `line-height` безразмерным числом, толщина рамки 1/1.5 px, кольца фокуса из `spacing` ± 1px.
-2. Сначала семантические токены (`--text-primary`), примитивы (`--color-gray-50`) только когда семантического нет.
+2. Сначала компонентный токен (`--buttons-primary-default-background`), потом семантический (`--action-primary`, `--content-muted`), примитивы (`--color-gray-50`) только когда ничего из этого нет.
 3. Один компонент = одна папка: `Name.tsx`, `Name.css`, `Name.stories.tsx`, `index.ts`. Классы с префиксом `pv-`, модификаторы `pv-name--variant`. Локальные CSS-переменные с `--_`.
 4. Props называем по Figma: `variant` = Type, `size` = Size, состояния — булевы props (`loading`, `error`, `selected`) или `state`.
 5. Состояния Figma: Default, Pressed (`:active`), Focus-visible, Selected, Error, Loading, Disabled — если они есть в макете. Принудительные состояния для docs — классы `is-pressed`, `is-focus-visible`, `is-active`, `is-focused`.

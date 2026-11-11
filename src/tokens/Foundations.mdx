@@ -1,22 +1,24 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { ColorRamps, SemanticColors, Scales, Typography } from './Foundations';
+import { ColorRamps, SemanticColors, ComponentColors, Scales, Typography } from './Foundations';
 
 <Meta title="PlayVerse/Foundations" />
 
 # PlayVerse foundations
 
-Tokens come from the **Game-PlayVerse** Figma Variables into `src/tokens/tokens.json` (W3C DTCG, 269 tokens).
+Tokens come from the **Game-PlayVerse** Figma Variables into `src/tokens/tokens.json` (W3C DTCG, 351 tokens).
 `npm run tokens` generates `src/tokens/tokens.css` from it. Never edit either file by hand: update the Variables in Figma and re-export.
 
-Figma collection → token path → CSS variable:
+Three levels, each one refers to the level above it:
 
-- **Colors** → `color.<hue>.<step>` → `--color-gray-900`
-- **Component Colors** (aliases of Colors) → `<group>.<name>` → `--text-primary`, `--buttons-primary-default-background`
-- **Spacing** → `spacing.<n>` → `--spacing-16`
-- **Radius** → `radius.<n>` → `--radius-12`
-- **Typography** → `font.*`, `letter-spacing.*`, `line-height.*` → `--font-size-14`, `--line-height-relaxed`
+1. **Primitives** (Figma collection `Primitives`) → `color.<hue>.<step>` → `--color-gray-900`. Raw colours, no meaning.
+2. **Semantic** (Figma collection `Semantic`, plus the older `text`, `background`, `stroke`, `icon` groups that still live in `Component Colors`) → `--action-primary`, `--content-muted`, `--surface-field`, `--border-strong`, `--feedback-success-bg`. What a colour is *for*.
+3. **Component** (Figma collection `Component Colors`) → `--buttons-primary-default-background`, `--chips-success-bg`, `--inputs-stroke-active`. One detail of one component.
 
-Components should use the semantic tokens (`--text-primary`) and only fall back to primitives (`--color-gray-900`) when no semantic token exists.
+Example chain: `--buttons-primary-default-background` → `--action-primary` → `--color-purple-700` → `#6d28d9`.
+
+Spacing, radius and typography have their own collections: `--spacing-16`, `--radius-12`, `--font-size-14`, `--line-height-relaxed`.
+
+In components use the component token, or the semantic one when there is no component token. Primitives only as a last resort. `checkboxes`, `coins`, `app-bars`, `BottomNavBar` and `Alert` tokens still point straight at primitives (they have not been moved to the semantic level yet).
 
 ## Colors
 
@@ -27,6 +29,10 @@ Components should use the semantic tokens (`--text-primary`) and only fall back 
 ### Semantic tokens
 
 <SemanticColors />
+
+### Component tokens
+
+<ComponentColors />
 
 ## Spacing & radius
 
