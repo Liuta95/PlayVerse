@@ -1,0 +1,181 @@
+/* Sidebar — from Figma component "Sidebar" (State: Expanded 240 / Collapsed 80).
+   Every colour, space, radius and font comes from a design token (src/tokens/tokens.css). */
+.pv-sidebar {
+  /* No width tokens: 240 = 6 × spacing-40, 80 = 2 × spacing-40. */
+  --_width: calc(var(--spacing-40) * 6);
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  width: var(--_width);
+  height: 100%;
+  padding: var(--spacing-20);
+  border-right: 1px solid var(--stroke-primary);
+  background: var(--sidebar-bg-primary);
+  font-family: var(--font-family-body), system-ui, sans-serif;
+}
+
+.pv-sidebar--collapsed {
+  --_width: calc(var(--spacing-40) * 2);
+  align-items: center;
+  padding: var(--spacing-20) var(--spacing-16);
+}
+
+.pv-sidebar__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  min-height: 0;
+}
+
+.pv-sidebar--collapsed .pv-sidebar__top {
+  align-items: center;
+}
+
+.pv-sidebar__brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-8);
+}
+
+.pv-sidebar--collapsed .pv-sidebar__brand {
+  justify-content: center;
+}
+
+.pv-sidebar__logo {
+  display: flex;
+  align-items: center;
+  /* Figma gap is 10; there is no spacing-10 token. */
+  gap: 10px;
+  min-width: 0;
+}
+
+.pv-sidebar__logo-icon {
+  display: block;
+  flex: none;
+  width: var(--spacing-32);
+  height: var(--spacing-32);
+}
+
+.pv-sidebar__wordmark {
+  color: var(--color-gray-50);
+  font-family: var(--font-family-display), system-ui, sans-serif;
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.pv-sidebar__wordmark > span {
+  color: var(--color-purple-400);
+}
+
+.pv-sidebar--collapsed .pv-sidebar__wordmark {
+  display: none;
+}
+
+.pv-sidebar__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--spacing-24);
+  height: var(--spacing-24);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-8);
+  background: transparent;
+  color: var(--icon-white);
+  cursor: pointer;
+}
+
+.pv-sidebar--collapsed .pv-sidebar__toggle {
+  color: var(--sidebar-icon-primary);
+}
+
+/* Not in Figma: keyboard focus ring for the toggle. */
+.pv-sidebar__toggle:focus-visible {
+  outline: calc(var(--spacing-4) - 1px) solid var(--inputs-stroke-focused);
+  outline-offset: var(--spacing-2);
+}
+
+.pv-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.pv-sidebar--collapsed .pv-sidebar__nav {
+  align-items: center;
+}
+
+/* Collapsed: items shrink to icon-only squares; labels stay for screen readers, sub-items and chevrons are hidden. */
+.pv-sidebar--collapsed .pv-menu-item {
+  width: var(--spacing-44);
+  justify-content: center;
+  gap: 0;
+}
+
+.pv-sidebar--collapsed .pv-menu-item__label {
+  position: absolute;
+  flex: none;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.pv-sidebar--collapsed .pv-menu-item__chevron,
+.pv-sidebar--collapsed .pv-menu-item--secondary {
+  display: none;
+}
+
+.pv-sidebar__user {
+  display: flex;
+  align-items: center;
+  /* Figma gap is 10; there is no spacing-10 token. */
+  gap: 10px;
+  padding: var(--spacing-12);
+  border-radius: var(--radius-12);
+  background: var(--sidebar-bg-tertiary);
+}
+
+.pv-sidebar__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--spacing-36);
+  height: var(--spacing-36);
+  border-radius: var(--radius-full);
+  background: var(--sidebar-bg-active);
+  color: var(--sidebar-text-hover);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.35;
+}
+
+.pv-sidebar__user-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.pv-sidebar__user-name {
+  color: var(--sidebar-text-primary-2);
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.35;
+}
+
+.pv-sidebar__user-role {
+  color: var(--sidebar-text-primary);
+  font-size: var(--font-size-11);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.35;
+}

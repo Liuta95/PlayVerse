@@ -1,0 +1,97 @@
+/* MenuItem — from Figma component "Menu item" (Type: Main, Secondary × State: Default, Hover, Active).
+   Every colour, space, radius and font comes from a design token (src/tokens/tokens.css). */
+.pv-menu-item {
+  --_bg: var(--sidebar-bg-primary);
+  --_text: var(--sidebar-text-primary);
+  --_icon: var(--sidebar-icon-primary);
+  --_weight: var(--font-weight-semibold);
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  width: 100%;
+  min-height: var(--spacing-44);
+  padding: var(--spacing-12);
+  border: 0;
+  border-radius: var(--radius-12);
+  background: var(--_bg);
+  color: var(--_text);
+  font-family: var(--font-family-body), system-ui, sans-serif;
+  font-size: var(--font-size-14);
+  font-weight: var(--_weight);
+  line-height: 1.35;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Secondary: sub-item aligned with the label of a main item (12 + 20 icon + 12 gap = 44), no icon. */
+.pv-menu-item--secondary {
+  padding-left: var(--spacing-44);
+}
+
+/* Hover. `is-hover` forces it for docs. */
+.pv-menu-item:hover,
+.pv-menu-item.is-hover {
+  --_text: var(--sidebar-text-hover);
+  --_icon: var(--sidebar-icon-hover);
+}
+
+.pv-menu-item--secondary:hover,
+.pv-menu-item--secondary.is-hover {
+  --_weight: var(--font-weight-bold);
+}
+
+/* Active (current page). */
+.pv-menu-item[aria-current="page"] {
+  --_bg: var(--sidebar-bg-active);
+  --_text: var(--sidebar-text-active);
+  --_icon: var(--sidebar-icon-active);
+}
+
+/* Secondary keeps the plain background in Figma; only the text changes. */
+.pv-menu-item--secondary[aria-current="page"] {
+  --_bg: var(--sidebar-bg-primary);
+  --_weight: var(--font-weight-bold);
+}
+
+/* Not in Figma: keyboard focus ring, same pattern as Input "Focused" (3px stroke), drawn inside so the sidebar never clips it. */
+.pv-menu-item:focus-visible,
+.pv-menu-item.is-focus-visible {
+  outline: calc(var(--spacing-4) - 1px) solid var(--inputs-stroke-focused);
+  outline-offset: calc(var(--spacing-4) * -1);
+}
+
+.pv-menu-item__icon,
+.pv-menu-item__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--spacing-20);
+  height: var(--spacing-20);
+}
+
+.pv-menu-item__icon {
+  color: var(--_icon);
+}
+
+.pv-menu-item__icon > svg,
+.pv-menu-item__chevron > svg {
+  display: block;
+}
+
+/* Chevron keeps the primary icon colour in every state (Figma). */
+.pv-menu-item__chevron {
+  color: var(--sidebar-icon-primary);
+}
+
+.pv-menu-item__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

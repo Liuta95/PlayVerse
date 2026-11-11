@@ -35,11 +35,11 @@ Claude Code читает этот файл перед каждой задаче�
 | Input (State × Filled) | 185:9957 | `Input` ✅ |
 | Text area | 188:10193 | `Textarea` ✅ |
 | Answer Button (4 состояния) | 28:402 | `AnswerButton` ✅ |
-| Sidebar | 153:1433 | — |
-| Menu item | 153:921 | — |
+| Sidebar (Expanded / Collapsed) | 153:1433 | `Sidebar` ✅ |
+| Menu item (Main/Secondary × Default/Hover/Active) | 153:921 | `MenuItem` ✅ |
 | Bottom Nav Bar | 1:898 | — |
 | Admin Nav Bar | 125:917 | — |
-| Logo icon | 153:974 | — |
+| Logo icon | 153:974 | SVG `src/assets/playverse-logo.svg`, используется внутри `Sidebar` (отдельного компонента нет) |
 | Sheet Footer | 183:2078 | — |
 
 Инструменты для Figma: Figma MCP (`use_figma`, `get_screenshot` и др.). Перед любой записью в Figma нужны скиллы `figma-use` и `figma-generate-design`.
@@ -114,6 +114,10 @@ npm run build-storybook
 
 **AnswerButton** (`src/components/AnswerButton`). `state`: `default`, `selected` (точка), `correct` (галочка), `incorrect` (крестик). Высота везде 56 (в Figma 54–56, но это приводило бы к прыжку). Фокус-кольцо добавлено нами (в Figma его нет). Результат correct/incorrect озвучивается скрытым текстом.
 
+**MenuItem** (`src/components/MenuItem`). `variant`: `main` (иконка 20px, слот `icon`) и `secondary` (подпункт, отступ слева 44, без иконки); `active` → `aria-current="page"`; `expandable` / `expanded` — шеврон и `aria-expanded`; `href` → `<a>`, иначе `<button>`. Hover берётся от курсора (в docs форсируется `is-hover`). Фокус с клавиатуры в Figma нет → добавлено кольцо внутрь элемента. Секундарный пункт в Active сохраняет обычный фон и меняется только текст (так в Figma). Шеврон всегда цвета `sidebar.icon-primary`, без поворота.
+
+**Sidebar** (`src/components/Sidebar`). `collapsed` (Expanded 240 / Collapsed 80), `onCollapsedChange` (без него переключатель не показывается), `user` (карточка; в свёрнутом виде только аватар), `navLabel`. Дети — `MenuItem`; в свёрнутом состоянии пункты 44×44 только с иконкой (подписи остаются для скринридеров), подпункты и шевроны скрыты — это делает CSS сайдбара. Логотип — SVG, слово «Play» `gray/50` + «Verse» `purple/400`, Space Grotesk Bold 18, letter-spacing −2%. Ширины 240/80 собраны как `6 × spacing-40` и `2 × spacing-40` (токена нет); два зазора по 10px захардкожены (нет `spacing-10`). Иконки меню в stories — самодельные заглушки из `src/components/placeholder-icons.tsx`.
+
 ## 7. Шрифты и базовые стили
 
 - `src/styles/fonts.css` — `@fontsource/space-grotesk` и `@fontsource/manrope`, латиница, веса 400/600/700. Статические пакеты выбраны, потому что имена семейств совпадают с токенами (у variable-пакетов имена с суффиксом `Variable`).
@@ -122,7 +126,7 @@ npm run build-storybook
 
 ## 8. Что ещё не сделано
 
-- Компоненты: Sidebar, Menu item, Bottom Nav Bar, Admin Nav Bar, Logo icon, Sheet Footer.
+- Компоненты: Bottom Nav Bar, Admin Nav Bar, Sheet Footer.
 - Иконки: нет набора, в stories используются самодельные inline SVG (в Figma — placeholder «Diamond»).
 - Шрифт Inter: токен есть, файлов нет.
 - Кириллица: подключена только латиница.
