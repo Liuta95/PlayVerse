@@ -37,6 +37,7 @@ Claude Code читает этот файл перед каждой задаче�
 | Answer Button (4 состояния) | 28:402 | `AnswerButton` ✅ |
 | Sidebar (Expanded / Collapsed) | 153:1433 | `Sidebar` ✅ |
 | Menu item (Main/Secondary × Default/Hover/Active) | 153:921 | `MenuItem` ✅ |
+| Checkbox (State × Status, 9 вариантов) | 204:2244 | `Checkbox` ✅ |
 | Bottom Nav Bar | 1:898 | — |
 | Admin Nav Bar | 125:917 | — |
 | Logo icon | 153:974 | SVG `src/assets/playverse-logo.svg`, используется внутри `Sidebar` (отдельного компонента нет) |
@@ -122,6 +123,8 @@ npm run build-storybook
 **MenuItem** (`src/components/MenuItem`). `variant`: `main` (иконка 20px, слот `icon`) и `secondary` (подпункт, отступ слева 44, без иконки); `active` → `aria-current="page"`; `expandable` / `expanded` — шеврон и `aria-expanded`; `href` → `<a>`, иначе `<button>`. Hover берётся от курсора (в docs форсируется `is-hover`). Фокус с клавиатуры в Figma нет → добавлено кольцо внутрь элемента. Секундарный пункт в Active сохраняет обычный фон и меняется только текст (так в Figma). Шеврон всегда цвета `sidebar.icon-primary`, без поворота.
 
 **Sidebar** (`src/components/Sidebar`). `collapsed` (Expanded 240 / Collapsed 80), `onCollapsedChange` (без него переключатель не показывается), `user` (карточка; в свёрнутом виде только аватар), `navLabel`. Дети — `MenuItem`; в свёрнутом состоянии пункты 44×44 только с иконкой (подписи остаются для скринридеров), подпункты и шевроны скрыты — это делает CSS сайдбара. Логотип — SVG, слово «Play» `gray/50` + «Verse» `purple/400`, Space Grotesk Bold 18, letter-spacing −2%. Ширины 240/80 собраны как `6 × spacing-40` и `2 × spacing-40` (токена нет); два зазора по 10px захардкожены (нет `spacing-10`). Иконки меню в stories — самодельные заглушки из `src/components/placeholder-icons.tsx`.
+
+**Checkbox** (`src/components/Checkbox`). Props: `label`, `checked`/`defaultChecked`, `error`, `disabled`. Нативный `input` внутри `label`, квадрат 20, галочка 14 (путь из Figma, `currentColor`). Hover есть в Figma → сделан. Решения: Error + Active в Figma не нарисован → выглядит как обычный отмеченный; фокус — обводка 2px `checkboxes.stroke.focus` поверх любого статуса; у неактивных Hover/Focused/Error/Disabled фона нет (так в Figma). Токены `checkboxes.icon.green/red` есть, но в макете не используются. Принудительные классы для docs: `is-hover`, `is-focus-visible`.
 
 ## 7. Шрифты и базовые стили
 

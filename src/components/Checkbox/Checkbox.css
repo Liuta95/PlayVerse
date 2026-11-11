@@ -1,0 +1,101 @@
+/* Checkbox — from Figma "Checkboxes" (State: Default, Hover, Focused, Disabled, Error × Status: Inactive, Active).
+   Every colour, space, radius and font comes from a design token (src/tokens/tokens.css). */
+.pv-checkbox {
+  --_stroke: var(--checkboxes-stroke-default);
+  --_bg: var(--checkboxes-bg-inactive);
+  --_icon: var(--checkboxes-icon-default);
+  --_label: var(--checkboxes-label-default);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  font-family: var(--font-family-body), system-ui, sans-serif;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: normal;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Native input stays in the DOM for keyboard and screen readers, but is invisible. */
+.pv-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pv-checkbox__box {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--spacing-20);
+  height: var(--spacing-20);
+  border: var(--_focus-width, 1px) solid var(--_focus-stroke, var(--_stroke));
+  border-radius: var(--radius-4);
+  background: var(--_bg);
+  color: var(--_icon);
+}
+
+.pv-checkbox__box > svg {
+  display: block;
+  visibility: hidden;
+}
+
+.pv-checkbox__input:checked + .pv-checkbox__box > svg {
+  visibility: visible;
+}
+
+.pv-checkbox__label {
+  color: var(--_label);
+}
+
+/* Inactive variants other than Default have no fill in Figma. */
+.pv-checkbox:is(:hover, .is-hover, .is-focus-visible, :has(.pv-checkbox__input:focus-visible)),
+.pv-checkbox.pv-checkbox--error,
+.pv-checkbox.pv-checkbox--disabled {
+  --_bg: transparent;
+}
+
+.pv-checkbox:is(:hover, .is-hover) {
+  --_stroke: var(--checkboxes-stroke-hover);
+  --_label: var(--checkboxes-label-hover);
+}
+
+.pv-checkbox.pv-checkbox--error {
+  --_stroke: var(--checkboxes-stroke-required);
+}
+
+/* Active (checked): filled box, stroke matches the fill. */
+.pv-checkbox:has(.pv-checkbox__input:checked) {
+  --_bg: var(--checkboxes-bg-active);
+  --_stroke: var(--checkboxes-bg-active);
+}
+
+.pv-checkbox:is(:hover, .is-hover):has(.pv-checkbox__input:checked) {
+  --_bg: var(--checkboxes-bg-active-hover);
+  --_stroke: var(--checkboxes-bg-active-hover);
+}
+
+/* Focused: 2px light-purple stroke on top of any status. */
+.pv-checkbox:is(.is-focus-visible, :has(.pv-checkbox__input:focus-visible)) {
+  --_focus-stroke: var(--checkboxes-stroke-focus);
+  --_focus-width: 2px;
+}
+
+.pv-checkbox.pv-checkbox--disabled {
+  --_stroke: var(--checkboxes-stroke-disabled);
+  --_label: var(--checkboxes-label-disabled);
+  --_icon: var(--checkboxes-icon-disabled);
+  cursor: not-allowed;
+}
+
+.pv-checkbox.pv-checkbox--disabled:has(.pv-checkbox__input:checked) {
+  --_bg: var(--checkboxes-bg-disabled);
+  --_stroke: var(--checkboxes-bg-disabled);
+}
