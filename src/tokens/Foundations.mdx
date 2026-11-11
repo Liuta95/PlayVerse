@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorRamps, SemanticColors, Scales, Typography } from './Foundations';
+
+<Meta title="PlayVerse/Foundations" />
+
+# PlayVerse foundations
+
+Tokens come from the **Game-PlayVerse** Figma Variables into `src/tokens/tokens.json` (W3C DTCG, 269 tokens).
+`npm run tokens` generates `src/tokens/tokens.css` from it. Never edit either file by hand: update the Variables in Figma and re-export.
+
+Figma collection → token path → CSS variable:
+
+- **Colors** → `color.<hue>.<step>` → `--color-gray-900`
+- **Component Colors** (aliases of Colors) → `<group>.<name>` → `--text-primary`, `--buttons-primary-default-background`
+- **Spacing** → `spacing.<n>` → `--spacing-16`
+- **Radius** → `radius.<n>` → `--radius-12`
+- **Typography** → `font.*`, `letter-spacing.*`, `line-height.*` → `--font-size-14`, `--line-height-relaxed`
+
+Components should use the semantic tokens (`--text-primary`) and only fall back to primitives (`--color-gray-900`) when no semantic token exists.
+
+## Colors
+
+### Primitives
+
+<ColorRamps />
+
+### Semantic tokens
+
+<SemanticColors />
+
+## Spacing & radius
+
+<Scales />
+
+## Typography
+
+Families are token values (`Space Grotesk`, `Manrope`, `Inter`). **Space Grotesk** (display) and **Manrope** (body) are bundled through `@fontsource` in `src/styles/fonts.css` (Latin, weights 400 / 600 / 700). **Inter** exists as a token but is not bundled, so its specimen renders in a system fallback.
+
+<Typography />
+
+## Notes on the export
+
+- `line-height.*` is stored in Figma as `150` / `160` (percent). It is exported as `150%` / `160%` so the CSS is valid.
+- `letter-spacing.*` is exported in `px` (Figma variable descriptions say `0.3px`, `0.72px`, `0.78px`).
+- Semi-transparent colours are 8-digit hex (`#8b5cf624`). Variable names with spaces or brackets are sanitised: `purple/500 (14%)` becomes `purple.500-14pct`, `green/400 2` becomes `green.400-2`.

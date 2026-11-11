@@ -1,19 +1,13 @@
 import type { Preview } from '@storybook/react-vite'
 import '../src/tokens/tokens.css'
+import '../src/styles/fonts.css'
 import '../src/styles/base.css'
 
 const preview: Preview = {
-  decorators: [
-    (Story) => (
-      <div className="pv-root" style={{ padding: 24, minHeight: '100%' }}>
-        <Story />
-      </div>
-    ),
-  ],
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
     backgrounds: {
-      options: { playverse: { name: 'PlayVerse', value: '#101014' } },
+      options: { playverse: { name: 'PlayVerse', value: 'var(--background-primary)' } },
     },
     controls: {
       matchers: {

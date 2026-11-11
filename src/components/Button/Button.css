@@ -1,0 +1,295 @@
+/* Button — from Figma component "Primary Button" (Type × Size × State).
+   Every colour, space, radius and font comes from a design token (src/tokens/tokens.css). */
+.pv-button {
+  --_height: calc(var(--spacing-24) * 2); /* Large = 48 */
+  --_font-size: var(--font-size-15);
+  --_px: var(--spacing-24);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  height: var(--_height);
+  padding: 0 var(--_px);
+  border: var(--_sw, 0px) solid var(--_stroke, transparent);
+  border-radius: var(--radius-16);
+  background: var(--_bg, transparent);
+  color: var(--_text);
+  font-family: var(--font-family-display), system-ui, sans-serif;
+  font-size: var(--_font-size);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.25;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pv-button--medium {
+  --_height: var(--spacing-44);
+  --_font-size: var(--font-size-13);
+}
+
+/* Medium tertiary is text-only: no horizontal padding in Figma. */
+.pv-button--tertiary.pv-button--medium {
+  --_px: 0px;
+}
+
+/* Icon-only: square, no padding. */
+.pv-button--icon-with-bg,
+.pv-button--icon-without-bg {
+  --_px: 0px;
+  width: var(--_height);
+}
+
+.pv-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--spacing-24);
+  height: var(--spacing-24);
+  color: var(--_icon);
+}
+
+.pv-button__icon > svg {
+  display: block;
+}
+
+.pv-button__label {
+  color: var(--_text);
+}
+
+/* Focus ring: 2px stroke outside + 5px purple halo (Figma "Focus-visible"). */
+.pv-button:focus-visible,
+.pv-button.is-focus-visible {
+  outline: var(--spacing-2) solid var(--_ring);
+  outline-offset: 0;
+  box-shadow: 0 0 0 calc(var(--spacing-4) + 1px) var(--color-purple-900);
+}
+
+.pv-button:disabled {
+  cursor: not-allowed;
+}
+
+.pv-button[aria-busy="true"] {
+  cursor: progress;
+}
+
+/* State colours per variant. Generated from tokens.json (buttons.*); every value is a token. */
+
+/* primary */
+.pv-button--primary {
+  --_bg: var(--buttons-primary-default-background);
+  --_text: var(--buttons-primary-default-text);
+  --_icon: var(--buttons-primary-default-icon);
+  --_stroke: transparent;
+  --_sw: 0px;
+}
+.pv-button--primary:active:not(:disabled):not([aria-busy="true"]),
+.pv-button--primary.is-pressed {
+  --_bg: var(--buttons-primary-pressed-background);
+  --_text: var(--buttons-primary-pressed-text);
+  --_icon: var(--buttons-primary-pressed-icon);
+  --_stroke: var(--buttons-primary-pressed-stroke);
+  --_sw: 0px;
+}
+.pv-button--primary[data-selected="true"] {
+  --_bg: var(--buttons-primary-selected-background);
+  --_text: var(--buttons-primary-selected-text);
+  --_icon: var(--buttons-primary-selected-icon);
+  --_stroke: var(--buttons-primary-selected-stroke);
+  --_sw: 0px;
+}
+.pv-button--primary[data-error="true"] {
+  --_bg: var(--buttons-primary-error-background);
+  --_text: var(--buttons-primary-error-text);
+  --_icon: var(--buttons-primary-error-icon);
+  --_sw: 0px;
+}
+.pv-button--primary[aria-busy="true"] {
+  --_bg: var(--buttons-primary-loading-background);
+  --_text: var(--buttons-primary-loading-text);
+  --_icon: var(--buttons-primary-loading-icon);
+  --_sw: 0px;
+}
+.pv-button--primary:disabled {
+  --_bg: var(--buttons-primary-disabled-background);
+  --_text: var(--buttons-primary-disabled-text);
+  --_icon: var(--buttons-primary-disabled-icon);
+  --_sw: 0px;
+}
+.pv-button--primary:focus-visible,
+.pv-button--primary.is-focus-visible {
+  --_ring: var(--buttons-primary-focused-visible-stroke);
+}
+
+/* secondary */
+.pv-button--secondary {
+  --_bg: var(--buttons-secondary-default-background);
+  --_text: var(--buttons-secondary-default-text);
+  --_icon: var(--buttons-secondary-default-icon);
+  --_stroke: var(--buttons-secondary-default-stroke);
+  --_sw: 1px;
+}
+.pv-button--secondary:active:not(:disabled):not([aria-busy="true"]),
+.pv-button--secondary.is-pressed {
+  --_bg: var(--buttons-secondary-pressed-background);
+  --_text: var(--buttons-secondary-pressed-text);
+  --_icon: var(--buttons-secondary-pressed-icon);
+  --_stroke: var(--buttons-secondary-pressed-stroke);
+  --_sw: 1px;
+}
+.pv-button--secondary[data-selected="true"] {
+  --_bg: var(--buttons-secondary-selected-background);
+  --_text: var(--buttons-secondary-selected-text);
+  --_icon: var(--buttons-secondary-selected-icon);
+  --_stroke: var(--buttons-secondary-selected-stroke);
+  --_sw: 1px;
+}
+.pv-button--secondary[data-error="true"] {
+  --_bg: var(--buttons-secondary-error-background);
+  --_text: var(--buttons-secondary-error-text);
+  --_icon: var(--buttons-secondary-error-icon);
+  --_stroke: var(--buttons-secondary-error-stroke);
+  --_sw: 1px;
+}
+.pv-button--secondary[aria-busy="true"] {
+  --_bg: var(--buttons-secondary-loading-background);
+  --_text: var(--buttons-secondary-loading-text);
+  --_icon: var(--buttons-secondary-loading-icon);
+  --_stroke: var(--buttons-secondary-loading-stroke);
+  --_sw: 1px;
+}
+.pv-button--secondary:disabled {
+  --_bg: var(--buttons-secondary-disabled-background);
+  --_text: var(--buttons-secondary-disabled-text);
+  --_icon: var(--buttons-secondary-disabled-icon);
+  --_stroke: var(--buttons-secondary-disabled-stroke);
+  --_sw: 1px;
+}
+.pv-button--secondary:focus-visible,
+.pv-button--secondary.is-focus-visible {
+  --_ring: var(--buttons-secondary-focused-visible-stroke);
+}
+
+/* tertiary */
+.pv-button--tertiary {
+  --_bg: transparent;
+  --_text: var(--buttons-tertiary-default-text);
+  --_icon: var(--buttons-tertiary-default-icon);
+  --_stroke: transparent;
+  --_sw: 0px;
+}
+.pv-button--tertiary:active:not(:disabled):not([aria-busy="true"]),
+.pv-button--tertiary.is-pressed {
+  --_bg: var(--buttons-tertiary-pressed-background);
+  --_text: var(--buttons-tertiary-pressed-text);
+  --_icon: var(--buttons-tertiary-pressed-icon);
+  --_sw: 0px;
+}
+.pv-button--tertiary[data-selected="true"] {
+  --_text: var(--buttons-tertiary-selected-text);
+  --_icon: var(--buttons-tertiary-selected-icon);
+  --_sw: 0px;
+}
+.pv-button--tertiary[data-error="true"] {
+  --_text: var(--buttons-tertiary-error-text);
+  --_icon: var(--buttons-tertiary-error-icon);
+  --_sw: 0px;
+}
+.pv-button--tertiary[aria-busy="true"] {
+  --_text: var(--buttons-tertiary-loading-text);
+  --_icon: var(--buttons-tertiary-loading-icon);
+  --_sw: 0px;
+}
+.pv-button--tertiary:disabled {
+  --_text: var(--buttons-tertiary-disabled-text);
+  --_icon: var(--buttons-tertiary-disabled-icon);
+  --_sw: 0px;
+}
+.pv-button--tertiary:focus-visible,
+.pv-button--tertiary.is-focus-visible {
+  --_ring: var(--buttons-tertiary-focused-visible-stroke);
+}
+
+/* icon-with-bg */
+.pv-button--icon-with-bg {
+  --_bg: var(--buttons-icon-with-bg-default-background);
+  --_icon: var(--buttons-icon-with-bg-default-icon);
+  --_stroke: var(--buttons-icon-with-bg-default-stroke);
+  --_sw: 1px;
+}
+.pv-button--icon-with-bg:active:not(:disabled):not([aria-busy="true"]),
+.pv-button--icon-with-bg.is-pressed {
+  --_bg: var(--buttons-icon-with-bg-pressed-background);
+  --_icon: var(--buttons-icon-with-bg-pressed-icon);
+  --_sw: 1px;
+}
+.pv-button--icon-with-bg[data-selected="true"] {
+  --_bg: var(--buttons-icon-with-bg-selected-background);
+  --_icon: var(--buttons-icon-with-bg-selected-icon);
+  --_stroke: var(--buttons-icon-with-bg-selected-stroke);
+  --_sw: 1px;
+}
+.pv-button--icon-with-bg[data-error="true"] {
+  --_bg: var(--buttons-icon-with-bg-error-background);
+  --_icon: var(--buttons-icon-with-bg-error-icon);
+  --_stroke: var(--buttons-icon-with-bg-error-stroke);
+  --_sw: 1px;
+}
+.pv-button--icon-with-bg[aria-busy="true"] {
+  --_bg: var(--buttons-icon-with-bg-loading-background);
+  --_icon: var(--buttons-icon-with-bg-loading-icon);
+  --_stroke: var(--buttons-icon-with-bg-loading-stroke);
+  --_sw: 1px;
+}
+.pv-button--icon-with-bg:disabled {
+  --_bg: var(--buttons-icon-with-bg-disabled-background);
+  --_icon: var(--buttons-icon-with-bg-disabled-icon);
+  --_stroke: var(--buttons-icon-with-bg-disabled-stroke);
+  --_sw: 1px;
+}
+.pv-button--icon-with-bg:focus-visible,
+.pv-button--icon-with-bg.is-focus-visible {
+  --_ring: var(--buttons-icon-with-bg-focused-visible-stroke);
+}
+
+/* icon-without-bg */
+.pv-button--icon-without-bg {
+  --_bg: transparent;
+  --_icon: var(--buttons-icon-without-bg-default-icon);
+  --_stroke: var(--buttons-icon-without-bg-default-stroke);
+  --_sw: 0px;
+}
+.pv-button--icon-without-bg:active:not(:disabled):not([aria-busy="true"]),
+.pv-button--icon-without-bg.is-pressed {
+  --_bg: var(--buttons-icon-without-bg-pressed-background);
+  --_icon: var(--buttons-icon-without-bg-pressed-icon);
+  --_sw: 0px;
+}
+.pv-button--icon-without-bg[data-selected="true"] {
+  --_icon: var(--buttons-icon-without-bg-selected-icon);
+  --_stroke: var(--buttons-icon-without-bg-selected-stroke);
+  --_sw: 0px;
+}
+.pv-button--icon-without-bg[data-error="true"] {
+  --_icon: var(--buttons-icon-without-bg-error-icon);
+  --_stroke: var(--buttons-icon-without-bg-error-stroke);
+  --_sw: 1px;
+}
+.pv-button--icon-without-bg[aria-busy="true"] {
+  --_icon: var(--buttons-icon-without-bg-loading-icon);
+  --_stroke: var(--buttons-icon-without-bg-loading-stroke);
+  --_sw: 1px;
+}
+.pv-button--icon-without-bg:disabled {
+  --_icon: var(--buttons-icon-without-bg-disabled-icon);
+  --_stroke: var(--buttons-icon-without-bg-disabled-stroke);
+  --_sw: 0px;
+}
+.pv-button--icon-without-bg:focus-visible,
+.pv-button--icon-without-bg.is-focus-visible {
+  --_ring: var(--buttons-icon-without-bg-focused-visible-stroke);
+}

@@ -1,98 +1,97 @@
+/* AnswerButton — from Figma component "Answer Button" (State: Default, Selected, Correct, Incorrect).
+   Every colour, space, radius and font comes from a design token (src/tokens/tokens.css). */
 .pv-answer {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-}
+  --_bg: var(--background-default);
+  --_stroke: var(--stroke-primary);
+  --_sw: 1px;
+  --_icon: transparent;
+  --_weight: var(--font-weight-semibold);
 
-.pv-answer__button {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--spacing-8);
   width: 100%;
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--surface);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 700;
+  /* Figma frames are 54–56px tall depending on state; one min-height avoids a jump when the state changes. */
+  min-height: calc(var(--spacing-44) + var(--spacing-12));
+  padding: var(--spacing-16);
+  border: var(--_sw) solid var(--_stroke);
+  border-radius: var(--radius-16);
+  background: var(--_bg);
+  /* No semantic token for this colour: answer card/foreground is the same value as color.gray.50. */
+  color: var(--color-gray-50);
+  font-family: var(--font-family-body), system-ui, sans-serif;
+  font-size: var(--font-size-15);
+  font-weight: var(--_weight);
+  line-height: 1.35;
   text-align: left;
-}
-
-.pv-answer__button img {
-  display: block;
-  flex-shrink: 0;
-}
-
-.pv-answer__button--default {
-  font-weight: 600;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.pv-answer__button--default:hover {
-  border-color: var(--border-strong);
+.pv-answer--selected {
+  --_bg: var(--background-selected);
+  --_stroke: var(--stroke-purple);
+  --_sw: 1.5px;
+  --_icon: var(--icon-purple);
+  --_weight: var(--font-weight-bold);
 }
 
-.pv-answer__button--default:focus-visible {
-  outline: 2px solid var(--accent-soft);
-  outline-offset: 2px;
+.pv-answer--correct {
+  --_bg: var(--background-correct);
+  --_stroke: var(--stroke-green);
+  --_sw: 1.5px;
+  --_icon: var(--icon-green);
+  --_weight: var(--font-weight-bold);
 }
 
-.pv-answer__button--selected {
-  border: 1.5px solid var(--accent-soft);
-  background: rgba(139, 92, 246, 0.14);
+.pv-answer--incorrect {
+  --_bg: var(--background-incorrect);
+  --_stroke: var(--stroke-red);
+  --_sw: 1.5px;
+  --_icon: var(--icon-red);
+  --_weight: var(--font-weight-bold);
 }
 
-.pv-answer__button--correct {
-  border: 1.5px solid var(--success);
-  background: rgba(52, 211, 153, 0.14);
+.pv-answer:disabled {
+  cursor: default;
 }
 
-.pv-answer__button--incorrect {
-  border: 1.5px solid var(--danger);
-  background: rgba(248, 113, 113, 0.14);
+/* Not in Figma: keyboard focus ring, same pattern as Input "Focused" (3px stroke, 2px gap). */
+.pv-answer:focus-visible,
+.pv-answer.is-focus-visible {
+  outline: calc(var(--spacing-4) - 1px) solid var(--inputs-stroke-focused);
+  outline-offset: var(--spacing-2);
 }
 
-.pv-answer__button--timeout {
-  border: 1.5px dashed var(--border-strong);
-  background: var(--surface-2);
-  color: var(--text-muted);
-  font-weight: 600;
-  opacity: 0.7;
+.pv-answer__text {
+  min-width: 0;
 }
 
-.pv-answer__button--dimmed {
-  font-weight: 600;
-  opacity: 0.4;
-}
-
-.pv-answer__button--missed {
-  border: 1.5px dashed var(--border-strong);
-  background: var(--surface-2);
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.pv-answer__button--lg {
-  padding: 17px;
-  font-size: 15px;
-}
-
-.pv-answer__dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 7px;
-  background: var(--accent-soft);
-}
-
-.pv-answer__hint {
-  display: flex;
+.pv-answer__icon {
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  margin: 0;
-  color: var(--success);
-  font-size: 12px;
-  font-weight: 600;
+  justify-content: center;
+  flex: none;
+  width: var(--spacing-24);
+  /* Same height as one text line, so the icon never makes the button taller than Default. */
+  height: var(--spacing-20);
+  color: var(--_icon);
+}
+
+.pv-answer__icon > svg {
+  display: block;
+}
+
+/* Result is announced to screen readers; the icon is decorative. */
+.pv-answer__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

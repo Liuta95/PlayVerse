@@ -30,3 +30,13 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## Design tokens
+
+Tokens come from the **Game-PlayVerse** Figma Variables (`WZ3qBtK18DsqhF1ep9AKfs`):
+
+- `src/tokens/tokens.json` – W3C DTCG export of all Figma Variables (Colors, Component Colors, Spacing, Radius, Typography). Do not edit by hand.
+- `src/tokens/tokens.css` – generated CSS variables. Run `npm run tokens` after `tokens.json` changes.
+- Storybook loads `tokens.css` globally (`.storybook/preview.tsx`); the **PlayVerse / Foundations** page documents every token.
+
+Use the variables in components (`var(--text-primary)`, `var(--spacing-16)`), never raw hex or px values.

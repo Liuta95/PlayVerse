@@ -1,45 +1,61 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
-import { StateGrid } from '../../../.storybook/StateGrid';
-import { AnswerButton } from './AnswerButton';
+import { AnswerButton, type AnswerState } from './AnswerButton';
 
 const meta = {
-  title: 'PlayVerse/Components/Answer Button',
+  title: 'Components/AnswerButton',
   component: AnswerButton,
   tags: ['autodocs'],
-  args: { label: 'Mars', state: 'default', onClick: fn() },
+  parameters: { layout: 'centered' },
+  decorators: [
+    // Figma frame is 358px wide (mobile); the All States story opts out with `parameters.fullWidth`.
+    (Story, context) =>
+      context.parameters.fullWidth ? (
+        <Story />
+      ) : (
+        <div style={{ width: 358 }}>
+          <Story />
+        </div>
+      ),
+  ],
+  args: { children: 'Mars', state: 'default', disabled: false, onClick: fn() },
   argTypes: {
-    state: { control: 'inline-radio', options: ['default', 'selected', 'correct', 'incorrect', 'timeout'] },
+    state: {
+      control: 'inline-radio',
+      options: ['default', 'selected', 'correct', 'incorrect'],
+      description: 'Figma "State".',
+    },
+    children: { control: 'text' },
+    disabled: { control: 'boolean' },
+    onClick: { action: 'clicked' },
   },
-  decorators: [(Story) => <div style={{ width: 358 }}><Story /></div>],
 } satisfies Meta<typeof AnswerButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-
 export const Selected: Story = { args: { state: 'selected' } };
-
 export const Correct: Story = { args: { state: 'correct' } };
+export const Incorrect: Story = { args: { state: 'incorrect' } };
 
-export const Incorrect: Story = { args: { label: 'Venus', state: 'incorrect', correctAnswer: 'Mars' } };
+export const LongAnswer: Story = {
+  args: { children: 'It is the fourth planet from the Sun and is often called the Red Planet because of iron oxide on its surface' },
+};
 
-export const Timeout: Story = { args: { state: 'timeout' } };
+const STATES: AnswerState[] = ['default', 'selected', 'correct', 'incorrect'];
 
+/** Figma states. Focus-visible is not in Figma: it is forced with `is-focus-visible` to show the added ring. */
 export const AllStates: Story = {
-  // Show the story source: the generated JSX snippet can't serialize the states array
-  parameters: { docs: { source: { type: 'code' } } },
+  parameters: { layout: 'padded', fullWidth: true },
   render: () => (
-    <StateGrid states={[
-      { label: 'Default', node: <AnswerButton label="Mars" /> },
-      { label: 'Selected · locked in', node: <AnswerButton label="Mars" state="selected" /> },
-      { label: 'Correct', node: <AnswerButton label="Mars" state="correct" /> },
-      { label: 'Incorrect', node: <AnswerButton label="Venus" state="incorrect" correctAnswer="Mars" /> },
-      { label: 'Timeout · no answer', node: <AnswerButton label="Mars" state="timeout" /> },
-      { label: 'Dimmed (after lock-in)', node: <AnswerButton label="Venus" state="dimmed" /> },
-      { label: 'Missed (time ran out)', node: <AnswerButton label="Venus" state="missed" /> },
-      { label: 'Size = lg · correct', node: <AnswerButton label="Mars" size="lg" state="correct" /> },
-    ]} />
+    <div style={{ display: 'grid', gap: 'var(--spacing-16)', width: 358 }}>
+      {STATES.map((state) => (
+        <AnswerButton key={state} state={state}>
+          Answer
+        </AnswerButton>
+      ))}
+      <AnswerButton className="is-focus-visible">Answer · focus-visible</AnswerButton>
+    </div>
   ),
 };
