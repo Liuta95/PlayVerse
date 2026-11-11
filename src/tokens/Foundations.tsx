@@ -90,7 +90,7 @@ export const ColorRamps = () => {
   );
 };
 
-const SEMANTIC_GROUPS = ['action', 'content', 'surface', 'border', 'feedback', 'text', 'background', 'stroke', 'icon'];
+const SEMANTIC_GROUPS = ['action', 'content', 'surface', 'border', 'feedback', 'currency', 'text', 'background', 'stroke', 'icon'];
 const COMPONENT_GROUPS = ['buttons', 'chips', 'inputs', 'sidebar', 'checkboxes', 'coins', 'app-bars', 'BottomNavBar', 'Alert'];
 
 /** Token groups with the alias each token points to. */
@@ -127,7 +127,7 @@ const TokenGroups = ({ groups }: { groups: string[] }) => (
 /** Level 2: semantic tokens (aliases of primitives). */
 export const SemanticColors = () => <TokenGroups groups={SEMANTIC_GROUPS} />;
 
-/** Level 3: component tokens (aliases of semantic tokens, or of primitives where no semantic token exists yet). */
+/** Level 3: component tokens (aliases of semantic tokens). */
 export const ComponentColors = () => <TokenGroups groups={COMPONENT_GROUPS} />;
 
 /** Spacing + radius scales. */

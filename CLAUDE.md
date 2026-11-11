@@ -66,20 +66,21 @@ npm run build-storybook
 
 ## 4. Токены
 
-Источник правды — **переменные Figma**. Они выгружаются в `src/tokens/tokens.json` (W3C DTCG, 351 токен), оттуда `npm run tokens` генерирует `src/tokens/tokens.css` (CSS-переменные в `:root`). Оба файла руками не править.
+Источник правды — **переменные Figma**. Они выгружаются в `src/tokens/tokens.json` (W3C DTCG, 380 токенов), оттуда `npm run tokens` генерирует `src/tokens/tokens.css` (CSS-переменные в `:root`). Оба файла руками не править.
 
 **Три уровня, каждый ссылается на предыдущий:**
 
 | Уровень | Коллекция Figma | Путь токена | CSS-переменная | Кол-во |
 | --- | --- | --- | --- | --- |
-| 1. Primitives | `Primitives` (раньше `Colors`) | `color.<hue>.<step>` | `--color-gray-900` | 47 |
-| 2. Semantic | `Semantic` (новая) + старые `text`, `background`, `stroke`, `icon`, `coins` в `Component Colors` | `action.*`, `content.*`, `surface.*`, `border.*`, `feedback.*`, `text.*` … | `--action-primary`, `--content-muted`, `--surface-field`, `--border-strong`, `--feedback-success-bg` | 35 + ~31 |
-| 3. Component | `Component Colors` | `buttons.*`, `chips.*`, `inputs.*`, `sidebar.*`, `checkboxes.*`, `coins.*`, `app-bars.*`, `BottomNavBar.*`, `Alert.*` | `--buttons-primary-default-background` | ~185 |
+| 1. Primitives | `Primitives` (раньше `Colors`) | `color.<hue>.<step>` | `--color-gray-900` | 55 |
+| 2. Semantic | `Semantic` (новая) + старые `text`, `background`, `stroke`, `icon` в `Component` | `action.*`, `content.*`, `surface.*`, `border.*`, `feedback.*`, `currency.*`, `text.*` … | `--action-primary`, `--content-muted`, `--surface-field`, `--border-strong`, `--feedback-success-bg`, `--currency-coin` | 56 + 29 |
+| 3. Component | `Component` (раньше `Component Colors`) | `buttons.*`, `chips.*`, `inputs.*`, `sidebar.*`, `checkboxes.*`, `coins.*`, `app-bars.*`, `BottomNavBar.*`, `Alert.*` | `--buttons-primary-default-background` | 187 |
 | — | `Spacing`, `Radius`, `Typography` | `spacing.*`, `radius.*`, `font.*`, `letter-spacing.*`, `line-height.*` | `--spacing-16`, `--radius-12`, `--font-size-14` | 13 / 10 / 30 |
 
 Цепочка: `--buttons-primary-default-background` → `--action-primary` → `--color-purple-700` → `#6d28d9`.
 
-- `buttons.*`, `chips.*`, `inputs.*`, `sidebar.*` ссылаются на `Semantic` (сделано в Figma в ноябре 2026, цвета проверены до/после: все 216 токенов совпали). `checkboxes.*`, `coins.*`, `app-bars.*`, `BottomNavBar.*`, `Alert.*` пока ссылаются прямо на primitives (`Alert` частично на «сырые» цвета с прозрачностью) — их ещё не переносили на уровень Semantic.
+- Все девять групп компонентных токенов (`buttons`, `chips`, `inputs`, `sidebar`, `checkboxes`, `coins`, `app-bars`, `BottomNavBar`, `Alert`) ссылаются на `Semantic`. Перенос делался скриптом в Figma с проверкой: цвета всех 216 токенов до и после совпали бит в бит. Для `Alert` добавлены 8 полупрозрачных примитивов (`blue/400 (40%)`, `(10%)` и так же для orange, red, green).
+- Переименовано: `content/accent-active` → `content/accent-light` и `border/accent-strong` → `border/accent-light` (purple/300; «active» вводило в заблуждение, в BottomNavBar он используется для hover).
 - Старые смысловые `text.*`, `background.*`, `stroke.*`, `icon.*` остались в `Component Colors`: API Figma не умеет переносить переменные между коллекциями. Новые `content.*` частично дублируют `text.*` по смыслу.
 - Режим во всех коллекциях один (`Value`), тёмная тема единственная. Light/Dark не делали: добавлять режимы нужно в коллекцию `Semantic`.
 - Шкалы: spacing 0, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44. Radius 4–40 и `full` (999). Шрифты: Space Grotesk (display), Manrope (body), Inter (токен есть, файлы не подключены).
