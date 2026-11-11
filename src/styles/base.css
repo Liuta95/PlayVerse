@@ -1,6 +1,6 @@
 /* Base page styles from the tokens: dark page background and the body font. */
 html {
-  background: var(--background-primary);
+  background: var(--surface-page);
 }
 
 body {

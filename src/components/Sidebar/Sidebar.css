@@ -12,7 +12,7 @@
   width: var(--_width);
   height: 100%;
   padding: var(--spacing-20);
-  border-right: 1px solid var(--stroke-primary);
+  border-right: 1px solid var(--border-default);
   background: var(--sidebar-bg-primary);
   font-family: var(--font-family-body), system-ui, sans-serif;
 }
@@ -88,7 +88,7 @@
   border: 0;
   border-radius: var(--radius-8);
   background: transparent;
-  color: var(--icon-white);
+  color: var(--content-strong);
   cursor: pointer;
 }
 

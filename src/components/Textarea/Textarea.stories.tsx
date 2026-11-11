@@ -62,7 +62,7 @@ const STATES: { name: string; props: Record<string, unknown> }[] = [
 ];
 
 const head = {
-  color: 'var(--text-tertiary)',
+  color: 'var(--content-subtle)',
   fontFamily: 'var(--font-family-body)',
   fontSize: 'var(--font-size-12)',
 } as const;

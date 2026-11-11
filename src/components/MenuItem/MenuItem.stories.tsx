@@ -48,7 +48,7 @@ export const Secondary: Story = { args: { variant: 'secondary', children: 'Quest
 export const WithChevron: Story = { args: { expandable: true, expanded: false, children: 'Questions' } };
 export const AsLink: Story = { args: { href: '#tournaments' } };
 
-const head = { color: 'var(--text-tertiary)', fontFamily: 'var(--font-family-body)', fontSize: 'var(--font-size-12)' } as const;
+const head = { color: 'var(--content-subtle)', fontFamily: 'var(--font-family-body)', fontSize: 'var(--font-size-12)' } as const;
 
 const STATES = [
   { name: 'Default', props: {} },

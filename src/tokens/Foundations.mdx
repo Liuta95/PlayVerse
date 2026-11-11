@@ -5,14 +5,14 @@ import { ColorRamps, SemanticColors, ComponentColors, Scales, Typography } from 
 
 # PlayVerse foundations
 
-Tokens come from the **Game-PlayVerse** Figma Variables into `src/tokens/tokens.json` (W3C DTCG, 380 tokens).
+Tokens come from the **Game-PlayVerse** Figma Variables into `src/tokens/tokens.json` (W3C DTCG, 358 tokens).
 `npm run tokens` generates `src/tokens/tokens.css` from it. Never edit either file by hand: update the Variables in Figma and re-export.
 
 Three levels, each one refers to the level above it:
 
 1. **Primitives** (Figma collection `Primitives`) → `color.<hue>.<step>` → `--color-gray-900`. Raw colours, no meaning.
-2. **Semantic** (Figma collection `Semantic`, plus the older `text`, `background`, `stroke`, `icon` groups that still live in `Component Colors`) → `--action-primary`, `--content-muted`, `--surface-field`, `--border-strong`, `--feedback-success-bg`, `--currency-coin`. What a colour is *for*.
-3. **Component** (Figma collection `Component Colors`) → `--buttons-primary-default-background`, `--chips-success-bg`, `--inputs-stroke-active`. One detail of one component.
+2. **Semantic** (Figma collection `Semantic`) → `--action-primary`, `--content-muted`, `--surface-field`, `--border-strong`, `--feedback-success-bg`, `--currency-coin`. What a colour is *for*.
+3. **Component** (Figma collection `Component`) → `--buttons-primary-default-background`, `--chips-success-bg`, `--inputs-stroke-active`. One detail of one component.
 
 Example chain: `--buttons-primary-default-background` → `--action-primary` → `--color-purple-700` → `#6d28d9`.
 

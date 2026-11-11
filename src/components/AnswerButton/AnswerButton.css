@@ -1,8 +1,8 @@
 /* AnswerButton — from Figma component "Answer Button" (State: Default, Selected, Correct, Incorrect).
    Every colour, space, radius and font comes from a design token (src/tokens/tokens.css). */
 .pv-answer {
-  --_bg: var(--background-default);
-  --_stroke: var(--stroke-primary);
+  --_bg: var(--surface-panel);
+  --_stroke: var(--border-default);
   --_sw: 1px;
   --_icon: transparent;
   --_weight: var(--font-weight-semibold);
@@ -19,8 +19,7 @@
   border: var(--_sw) solid var(--_stroke);
   border-radius: var(--radius-16);
   background: var(--_bg);
-  /* No semantic token for this colour: answer card/foreground is the same value as color.gray.50. */
-  color: var(--color-gray-50);
+  color: var(--content-strong);
   font-family: var(--font-family-body), system-ui, sans-serif;
   font-size: var(--font-size-15);
   font-weight: var(--_weight);
@@ -31,26 +30,26 @@
 }
 
 .pv-answer--selected {
-  --_bg: var(--background-selected);
-  --_stroke: var(--stroke-purple);
+  --_bg: var(--surface-selected);
+  --_stroke: var(--border-accent);
   --_sw: 1.5px;
-  --_icon: var(--icon-purple);
+  --_icon: var(--content-brand);
   --_weight: var(--font-weight-bold);
 }
 
 .pv-answer--correct {
-  --_bg: var(--background-correct);
-  --_stroke: var(--stroke-green);
+  --_bg: var(--feedback-success-bg);
+  --_stroke: var(--border-success);
   --_sw: 1.5px;
-  --_icon: var(--icon-green);
+  --_icon: var(--feedback-success-icon);
   --_weight: var(--font-weight-bold);
 }
 
 .pv-answer--incorrect {
-  --_bg: var(--background-incorrect);
-  --_stroke: var(--stroke-red);
+  --_bg: var(--feedback-danger-bg);
+  --_stroke: var(--border-danger);
   --_sw: 1.5px;
-  --_icon: var(--icon-red);
+  --_icon: var(--feedback-danger-icon);
   --_weight: var(--font-weight-bold);
 }
 

@@ -33,8 +33,8 @@ const display = (token: Token) => {
 };
 
 const panel: CSSProperties = {
-  background: 'var(--background-primary)',
-  color: 'var(--text-primary)',
+  background: 'var(--surface-page)',
+  color: 'var(--content-emphasis)',
   borderRadius: 'var(--radius-16)',
   padding: 'var(--spacing-24)',
   fontFamily: 'var(--font-family-body), system-ui, sans-serif',
@@ -42,7 +42,7 @@ const panel: CSSProperties = {
   margin: '16px 0',
 };
 const mono: CSSProperties = { fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 'var(--font-size-11)' };
-const muted: CSSProperties = { color: 'var(--text-tertiary)' };
+const muted: CSSProperties = { color: 'var(--content-subtle)' };
 
 const Panel = ({ children }: { children: ReactNode }) => <div style={panel}>{children}</div>;
 
@@ -90,7 +90,7 @@ export const ColorRamps = () => {
   );
 };
 
-const SEMANTIC_GROUPS = ['action', 'content', 'surface', 'border', 'feedback', 'currency', 'text', 'background', 'stroke', 'icon'];
+const SEMANTIC_GROUPS = ['action', 'content', 'surface', 'border', 'feedback', 'currency'];
 const COMPONENT_GROUPS = ['buttons', 'chips', 'inputs', 'sidebar', 'checkboxes', 'coins', 'app-bars', 'BottomNavBar', 'Alert'];
 
 /** Token groups with the alias each token points to. */
@@ -145,7 +145,7 @@ export const Scales = () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-16)' }}>
       {flat.filter((t) => t.path.startsWith('radius.')).map(({ path, token }) => (
         <div key={path} style={{ width: 84 }}>
-          <div style={{ width: 84, height: 84, background: 'var(--background-secondary)', border: '2px solid var(--color-purple-450)', borderRadius: `var(${cssVar(path)})` }} />
+          <div style={{ width: 84, height: 84, background: 'var(--surface-panel)', border: '2px solid var(--color-purple-450)', borderRadius: `var(${cssVar(path)})` }} />
           <div style={{ ...mono, marginTop: 'var(--spacing-8)' }}>{path.split('.')[1]}</div>
           <div style={{ ...mono, ...muted }}>{display(token)}</div>
         </div>

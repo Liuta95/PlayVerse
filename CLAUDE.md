@@ -66,14 +66,14 @@ npm run build-storybook
 
 ## 4. Токены
 
-Источник правды — **переменные Figma**. Они выгружаются в `src/tokens/tokens.json` (W3C DTCG, 380 токенов), оттуда `npm run tokens` генерирует `src/tokens/tokens.css` (CSS-переменные в `:root`). Оба файла руками не править.
+Источник правды — **переменные Figma**. Они выгружаются в `src/tokens/tokens.json` (W3C DTCG, 358 токенов), оттуда `npm run tokens` генерирует `src/tokens/tokens.css` (CSS-переменные в `:root`). Оба файла руками не править.
 
 **Три уровня, каждый ссылается на предыдущий:**
 
 | Уровень | Коллекция Figma | Путь токена | CSS-переменная | Кол-во |
 | --- | --- | --- | --- | --- |
 | 1. Primitives | `Primitives` (раньше `Colors`) | `color.<hue>.<step>` | `--color-gray-900` | 55 |
-| 2. Semantic | `Semantic` (новая) + старые `text`, `background`, `stroke`, `icon` в `Component` | `action.*`, `content.*`, `surface.*`, `border.*`, `feedback.*`, `currency.*`, `text.*` … | `--action-primary`, `--content-muted`, `--surface-field`, `--border-strong`, `--feedback-success-bg`, `--currency-coin` | 56 + 29 |
+| 2. Semantic | `Semantic` | `action.*`, `content.*`, `surface.*`, `border.*`, `feedback.*`, `currency.*` | `--action-primary`, `--content-muted`, `--surface-field`, `--border-strong`, `--feedback-success-bg`, `--currency-coin` | 63 |
 | 3. Component | `Component` (раньше `Component Colors`) | `buttons.*`, `chips.*`, `inputs.*`, `sidebar.*`, `checkboxes.*`, `coins.*`, `app-bars.*`, `BottomNavBar.*`, `Alert.*` | `--buttons-primary-default-background` | 187 |
 | — | `Spacing`, `Radius`, `Typography` | `spacing.*`, `radius.*`, `font.*`, `letter-spacing.*`, `line-height.*` | `--spacing-16`, `--radius-12`, `--font-size-14` | 13 / 10 / 30 |
 
@@ -81,12 +81,12 @@ npm run build-storybook
 
 - Все девять групп компонентных токенов (`buttons`, `chips`, `inputs`, `sidebar`, `checkboxes`, `coins`, `app-bars`, `BottomNavBar`, `Alert`) ссылаются на `Semantic`. Перенос делался скриптом в Figma с проверкой: цвета всех 216 токенов до и после совпали бит в бит. Для `Alert` добавлены 8 полупрозрачных примитивов (`blue/400 (40%)`, `(10%)` и так же для orange, red, green).
 - Переименовано: `content/accent-active` → `content/accent-light` и `border/accent-strong` → `border/accent-light` (purple/300; «active» вводило в заблуждение, в BottomNavBar он используется для hover).
-- Старые смысловые `text.*`, `background.*`, `stroke.*`, `icon.*` остались в `Component Colors`: API Figma не умеет переносить переменные между коллекциями. Новые `content.*` частично дублируют `text.*` по смыслу.
+- **Старые `text/*`, `background/*`, `stroke/*`, `icon/*` (29 шт.) удалены** (ноябрь 2026). Все слои на страницах Flow и Components были перепривязаны на токены `Semantic` с проверкой цвета слой за слоем, затем старые переменные удалены. Соответствие: `text/primary → content/emphasis`, `text/secondary → content/muted`, `text/tertiary → content/subtle`, `background/default|secondary → surface/panel`, `background/primary → surface/page`, `background/tertiary → surface/field`, `stroke/primary → border/default`, `stroke/red → border/danger`, `icon/white → content/strong` и т. д. Для токенов без пары добавлены `content/brand`, `surface/page`, `surface/accent`, `surface/selected`, `surface/disabled`, `border/success`, `border/bright`. В коде старые CSS-переменные (`--text-*`, `--background-*`, `--stroke-*`, `--icon-*`) больше не существуют.
 - Режим во всех коллекциях один (`Value`), тёмная тема единственная. Light/Dark не делали: добавлять режимы нужно в коллекцию `Semantic`.
 - Шкалы: spacing 0, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44. Radius 4–40 и `full` (999). Шрифты: Space Grotesk (display), Manrope (body), Inter (токен есть, файлы не подключены).
 - Имя токена = имя переменной Figma в kebab-case; префикс `color` для Primitives и `spacing` для Spacing, у остальных коллекций префикса нет. Camel-case разбивается (`BottomNavBar` → `--bottom-nav-bar-…`), то же правило в `Foundations.tsx`.
 - Тонкости выгрузки: `line-height.*` хранится как `150%`/`160%` (в Figma числа 150/160); `letter-spacing.*` в `px`; полупрозрачные цвета в 8-значном hex; пробелы и скобки в именах чистятся (`purple/500 (14%)` → `purple.500-14pct`, `green/400 2` → `green.400-2`).
-- Странные имена в Figma, которые стоит переименовать: `gray/shadowneutral-50`, `gray/shadow_neutral-25`, варианты `… 2`. `background/disabled` = `gray/200` (светлый фон на тёмной теме) похоже на ошибку.
+- Странные имена в Figma, которые стоит переименовать: `gray/shadowneutral-50`, `gray/shadow_neutral-25`, варианты `… 2`. `surface/disabled` (бывший `background/disabled`) = `gray/200` — светлый фон на тёмной теме, похоже на ошибку, цвет сохранён как был.
 - Переменная `answer card/foreground` есть в Figma, но не попала в выгрузку. Её значение = `gray/50`, в коде используется `--color-gray-50`.
 - **Обновление токенов:** пользователь меняет Variables в Figma → сказать Claude «перевыгрузи токены» → он читает переменные через `use_figma` (все коллекции, путь = префикс коллекции + имя), перезаписывает `tokens.json`, запускает `npm run tokens`, проверяет что все `var()` существуют. Проект сам к Figma не подключён. Файл Figma меняется (появляются новые группы токенов), поэтому всегда выгружать заново целиком, а не по памяти.
 

@@ -78,7 +78,7 @@ const STATES: { name: string; props: Record<string, unknown> }[] = [
 ];
 
 const cell = { display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'var(--spacing-12)' } as const;
-const head = { color: 'var(--text-tertiary)', fontFamily: 'var(--font-family-body)', fontSize: 'var(--font-size-12)', padding: 'var(--spacing-8)' } as const;
+const head = { color: 'var(--content-subtle)', fontFamily: 'var(--font-family-body)', fontSize: 'var(--font-size-12)', padding: 'var(--spacing-8)' } as const;
 
 const Matrix = ({ size }: { size: 'large' | 'medium' }) => (
   <div style={{ display: 'grid', gridTemplateColumns: `140px repeat(${STATES.length}, max-content)`, alignItems: 'center', overflowX: 'auto' }}>

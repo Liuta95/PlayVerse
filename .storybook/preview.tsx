@@ -7,7 +7,7 @@ const preview: Preview = {
   parameters: {
     layout: 'centered',
     backgrounds: {
-      options: { playverse: { name: 'PlayVerse', value: 'var(--background-primary)' } },
+      options: { playverse: { name: 'PlayVerse', value: 'var(--surface-page)' } },
     },
     controls: {
       matchers: {
