@@ -6,10 +6,10 @@ Claude Code читает этот файл перед каждой задаче�
 
 **PlayVerse** — вымышленный мобильный развлекательный хаб с мини-играми. Главная механика — **турнир-викторина из 5 вопросов**: игрок отвечает на вопросы на время, получает очки, XP, серии (streak) и места в таблице лидеров.
 
-**Жёсткое ограничение с первого брифа:** только виртуальная валюта. Никаких реальных денег, ставок, пополнений, выводов, коэффициентов и азартных механик. Любой текст, экран или компонент не должен обещать вывод средств или денежную ценность монет.
+**Экономика и вывод средств (решение пользователя, ноябрь 2026):** ограничения «только виртуальная валюта» нет. В продукте есть вывод монет в реальную ценность (PayPal, подарочные карты, крипта, банковский перевод), это основа кейса. Wallet и cash-out из Figma — часть продукта, не ошибка. Не напоминать о прежнем ограничении и не менять тексты на «только виртуальные монеты».
 
 - Пример экономики из брифа: баланс 1 200 монет, взнос 50 → 1 150, награда +80 → 1 230.
-- ⚠️ В Figma в экране Wallet есть добавленные пользователем cash-out и конвертация в $. Это противоречит ограничению выше. Я дважды предупреждал, пользователь пока оставил. В онбординге и в новых текстах говорим только про виртуальные монеты, уровни и бейджи.
+- Экраны Wallet, Withdraw (PayPal, bank transfer, crypto) и Review withdraw — рабочие экраны продукта; именно вывод тестировался в кейсе.
 - Все имена, числа и email на макетах (Alex, alex@example.com и т. п.) выдуманные.
 - Пользователь пишет по-русски и по-украински. Отвечай на языке последнего сообщения.
 
@@ -132,7 +132,7 @@ npm run build-storybook
 
 **Tab** (`src/components/Tab`). Одна вкладка: `selected` (`aria-selected`), `disabled`, `role="tab"`. Ряд вкладок и переключение не делали: оборачивать в свой `role="tablist"`. 78×36, padding 8/12, radius 16, Manrope SemiBold 13. Токены `tabs.*` (21 шт., ссылаются на Semantic) добавлены в ноябре 2026. Решения: Focused в Figma = внутренняя рамка `border/accent` + внешняя 1px снаружи → в коде `border` + `box-shadow`; у Selected+Focused внешняя рамка в Figma привязана к `tabs/selected/bg/focused` (почти невидима), в коде взят `tabs.selected.stroke.focused`, чтобы фокус был виден; Disabled+Selected не нарисован. Принудительные классы для docs: `is-hover`, `is-focus-visible`. Stories повторяют Figma один в один (по просьбе пользователя, без Docs и All States): `Components/Tab/Unselected` — Default, Hover, Focused, Disabled; `Components/Tab/Selected` — Default, Hover, Focused.
 
-**Alert** (`src/components/Alert`). `state`: `info`, `warning`, `error`, `success`; текст — `children`. Иконка «i» 16px (путь из Figma, один на все 4 состояния, цвет `currentColor` из `alert.*.icon`), отступ сверху 2. Padding 8, gap 8, radius 12, Manrope Regular 12. Ширина — 100% контейнера (358 в Figma = ширина мобильного экрана). `role="alert"` у error, `role="status"` у остальных. Решения: слои текста в Figma не привязаны к `alert/*/text` (Info — хардкод `#9ca3af`, остальные — `gray/450`), в коде взят токен `alert.*.text` (`#9ca3af`); текст макета про TON-адрес и потерю средств противоречит ограничению «только виртуальная валюта» → в stories нейтральный текст про монеты. Высота на 1px больше Figma (метрики шрифта). Stories повторяют Figma: Info, Warning, Error, Success, без Docs и All States.
+**Alert** (`src/components/Alert`). `state`: `info`, `warning`, `error`, `success`; текст — `children`. Иконка «i» 16px (путь из Figma, один на все 4 состояния, цвет `currentColor` из `alert.*.icon`), отступ сверху 2. Padding 8, gap 8, radius 12, Manrope Regular 12. Ширина — 100% контейнера (358 в Figma = ширина мобильного экрана). `role="alert"` у error, `role="status"` у остальных. Решения: слои текста в Figma не привязаны к `alert/*/text` (Info — хардкод `#9ca3af`, остальные — `gray/450`), в коде взят токен `alert.*.text` (`#9ca3af`); текст макета про TON-адрес и потерю средств в stories заменён нейтральным текстом про монеты (раньше это объясняли ограничением «только виртуальная валюта», оно снято; при желании вернуть текст из Figma). Высота на 1px больше Figma (метрики шрифта). Stories повторяют Figma: Info, Warning, Error, Success, без Docs и All States.
 
 **BottomNavBar** (`src/components/BottomNavBar`). `BottomNavBar` — `<nav>` (`aria-label` по умолчанию «Main»), фон и верхняя рамка 1px из `bottom-nav-bar.nav-bar.*`, ширина 100% (390 в Figma = ширина экрана), пункты делят ширину поровну. `NavItem` — ссылка (`href`), `icon` (слот 20px), `selected` → `aria-current="page"`. Пункт: высота 63 = `2 × spacing-32 − 1px` (токена нет; вместе с рамкой бар = 64), padding 8/24, gap 2, Manrope Bold 11. Состояния Figma: Default, Hover (`:hover`, в stories `is-hover`), Pressed + Selected — один акцентный цвет для текущей страницы и для `:active`. Иконки home, trophy, credit card, account circle, clock — из Figma, в `nav-icons.tsx` (`currentColor`). Решения: фокус с клавиатуры в Figma нет → кольцо внутрь, как у MenuItem. Пункт на 1px уже Figma (метрики шрифта). Stories повторяют Figma: `Nav.item` — Default, Hover, Pressed; `Bottom Nav Bar` — Nav.items=5, 4, 3; без Docs и All States.
 
@@ -148,7 +148,6 @@ npm run build-storybook
 - Иконки: нет набора, в stories используются самодельные inline SVG (в Figma — placeholder «Diamond»).
 - Шрифт Inter: токен есть, файлов нет.
 - Кириллица: подключена только латиница.
-- Решить судьбу cash-out в Wallet (см. раздел 1).
 - Прототипные связи между экранами в Figma не настроены.
 
 ## 9. Как работаем
