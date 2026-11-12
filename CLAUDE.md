@@ -41,7 +41,7 @@ Claude Code читает этот файл перед каждой задаче�
 | Tab (State × Selected, 7 вариантов) | 266:1663 | `Tab` ✅ |
 | Alert (Info / Warning / Error / Success) | 226:1670 | `Alert` ✅ |
 | Bottom Nav Bar (Nav.items = 3/4/5) + Nav.item (213:3245) | 1:898 | `BottomNavBar`, `NavItem` ✅ |
-| Admin Nav Bar | 125:917 | — |
+| Admin Nav Bar (Active = 4 пункта) | 125:917 | `AdminNavBar`, `AdminNavItem` ✅ |
 | Logo icon | 153:974 | SVG `src/assets/playverse-logo.svg`, используется внутри `Sidebar` (отдельного компонента нет) |
 | Sheet Footer | 183:2078 | — |
 
@@ -126,6 +126,8 @@ npm run build-storybook
 **MenuItem** (`src/components/MenuItem`). `variant`: `main` (иконка 20px, слот `icon`) и `secondary` (подпункт, отступ слева 44, без иконки); `active` → `aria-current="page"`; `expandable` / `expanded` — шеврон и `aria-expanded`; `href` → `<a>`, иначе `<button>`. Hover берётся от курсора (в docs форсируется `is-hover`). Фокус с клавиатуры в Figma нет → добавлено кольцо внутрь элемента. Секундарный пункт в Active сохраняет обычный фон и меняется только текст (так в Figma). Шеврон всегда цвета `sidebar.icon-primary`, без поворота.
 
 **Sidebar** (`src/components/Sidebar`). `collapsed` (Expanded 240 / Collapsed 80), `onCollapsedChange` (без него переключатель не показывается), `user` (карточка; в свёрнутом виде только аватар), `navLabel`. Дети — `MenuItem`; в свёрнутом состоянии пункты 44×44 только с иконкой (подписи остаются для скринридеров), подпункты и шевроны скрыты — это делает CSS сайдбара. Логотип — SVG, слово «Play» `gray/50` + «Verse» `purple/400`, Space Grotesk Bold 18, letter-spacing −2%. Ширины 240/80 собраны как `6 × spacing-40` и `2 × spacing-40` (токена нет); два зазора по 10px захардкожены (нет `spacing-10`). Иконки меню в stories — самодельные заглушки из `src/components/placeholder-icons.tsx`.
+
+**AdminNavBar** (`src/components/AdminNavBar`). Нижняя панель мобильной админки: `AdminNavBar` (`nav`, `aria-label="Admin"`) + `AdminNavItem` (`<a>`, `icon`, `selected` → `aria-current="page"`). 4 пункта (Overview, Tournaments, Questions, Moderation), высота 64, пункты делят ширину поровну. Активный: `content/accent` + Bold, остальные `content/muted` + SemiBold (в Bottom Nav Bar все Bold). В Figma компонент привязан к примитивам (`gray/900`, `gray/700`, `gray/400`, `purple/400`), группы `AdminNavBar.*` в `Component` нет → в коде взяты семантические токены с теми же значениями (`surface/panel`, `border/default`, `content/muted`, `content/accent`). Hover и Pressed в Figma не нарисованы → не делали; кольцо фокуса добавлено нами. Иконки из Figma лежат в `admin-icons.tsx` (24px-сетка, слот 20). Stories: `Active=Overview/Tournaments/Questions/Moderation`.
 
 **Checkbox** (`src/components/Checkbox`). Props: `label`, `checked`/`defaultChecked`, `error`, `disabled`. Нативный `input` внутри `label`, квадрат 20, галочка 14 (путь из Figma, `currentColor`). Hover есть в Figma → сделан. Решения: Error + Active в Figma не нарисован → выглядит как обычный отмеченный; фокус — обводка 2px `checkboxes.stroke.focus` поверх любого статуса; у неактивных Hover/Focused/Error/Disabled фона нет (так в Figma). Токены `checkboxes.icon.green/red` есть, но в макете не используются. Принудительные классы для docs: `is-hover`, `is-focus-visible`.
 

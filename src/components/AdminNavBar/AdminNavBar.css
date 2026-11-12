@@ -1,0 +1,65 @@
+/* Admin Nav Bar — from Figma "Admin Nav Bar" (Active = Overview, Tournaments, Questions, Moderation).
+   Figma binds this component to primitives (gray/900, gray/700, gray/400, purple/400) and has no component tokens,
+   so it uses the semantic tokens with the same values. Hover and Pressed are not drawn in Figma. */
+.pv-admin-nav {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  border-top: 1px solid var(--border-default);
+  background: var(--surface-panel);
+}
+
+.pv-admin-nav > .pv-admin-nav__item {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.pv-admin-nav__item {
+  --_color: var(--content-muted);
+  --_weight: var(--font-weight-semibold);
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  height: calc(var(--spacing-32) * 2 - 1px);
+  overflow: hidden;
+  color: var(--_color);
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pv-admin-nav__item--selected {
+  --_color: var(--content-accent);
+  --_weight: var(--font-weight-bold);
+}
+
+/* Not in Figma: keyboard focus ring, same pattern as the Bottom Nav Bar, drawn inside. */
+.pv-admin-nav__item:focus-visible,
+.pv-admin-nav__item.is-focus-visible {
+  outline: calc(var(--spacing-4) - 1px) solid var(--inputs-stroke-focused);
+  outline-offset: calc(var(--spacing-4) * -1);
+}
+
+.pv-admin-nav__icon {
+  display: inline-flex;
+  flex: none;
+  width: var(--spacing-20);
+  height: var(--spacing-20);
+}
+
+.pv-admin-nav__icon > svg {
+  display: block;
+}
+
+.pv-admin-nav__text {
+  font-family: var(--font-family-body), system-ui, sans-serif;
+  font-size: var(--font-size-11);
+  font-weight: var(--_weight);
+  line-height: normal;
+  white-space: nowrap;
+}
