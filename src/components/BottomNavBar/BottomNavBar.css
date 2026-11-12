@@ -1,0 +1,73 @@
+/* Bottom Nav Bar — from Figma "Bottom Nav Bar" (Nav.items = 3, 4, 5) and "Nav.item" (Default, Hover, Pressed + Selected).
+   Every colour, space and font comes from a design token (src/tokens/tokens.css). */
+.pv-bottom-nav {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  border-top: 1px solid var(--bottom-nav-bar-nav-bar-stroke);
+  background: var(--bottom-nav-bar-nav-bar-bg);
+}
+
+.pv-bottom-nav > .pv-nav-item {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.pv-nav-item {
+  --_icon: var(--bottom-nav-bar-nav-item-icon);
+  --_text: var(--bottom-nav-bar-nav-item-text);
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  height: calc(var(--spacing-32) * 2 - 1px);
+  padding: var(--spacing-8) var(--spacing-24);
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pv-nav-item:is(:hover, .is-hover) {
+  --_icon: var(--bottom-nav-bar-nav-item-icon-hover);
+  --_text: var(--bottom-nav-bar-nav-item-text-hover);
+}
+
+/* Figma "Pressed, Selected = Yes": the same accent colour for the current page and while pressed. */
+.pv-nav-item.pv-nav-item--selected,
+.pv-nav-item:is(:active, .is-pressed) {
+  --_icon: var(--bottom-nav-bar-nav-item-icon-active);
+  --_text: var(--bottom-nav-bar-nav-item-text-active);
+}
+
+/* Not in Figma: keyboard focus ring, same pattern as MenuItem, drawn inside. */
+.pv-nav-item:focus-visible,
+.pv-nav-item.is-focus-visible {
+  outline: calc(var(--spacing-4) - 1px) solid var(--inputs-stroke-focused);
+  outline-offset: calc(var(--spacing-4) * -1);
+}
+
+.pv-nav-item__icon {
+  display: inline-flex;
+  flex: none;
+  width: var(--spacing-20);
+  height: var(--spacing-20);
+  color: var(--_icon);
+}
+
+.pv-nav-item__icon > svg {
+  display: block;
+}
+
+.pv-nav-item__text {
+  color: var(--_text);
+  font-family: var(--font-family-body), system-ui, sans-serif;
+  font-size: var(--font-size-11);
+  font-weight: var(--font-weight-bold);
+  line-height: normal;
+  white-space: nowrap;
+}

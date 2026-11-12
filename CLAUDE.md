@@ -40,7 +40,7 @@ Claude Code читает этот файл перед каждой задаче�
 | Checkbox (State × Status, 9 вариантов) | 204:2244 | `Checkbox` ✅ |
 | Tab (State × Selected, 7 вариантов) | 266:1663 | `Tab` ✅ |
 | Alert (Info / Warning / Error / Success) | 226:1670 | `Alert` ✅ |
-| Bottom Nav Bar | 1:898 | — |
+| Bottom Nav Bar (Nav.items = 3/4/5) + Nav.item (213:3245) | 1:898 | `BottomNavBar`, `NavItem` ✅ |
 | Admin Nav Bar | 125:917 | — |
 | Logo icon | 153:974 | SVG `src/assets/playverse-logo.svg`, используется внутри `Sidebar` (отдельного компонента нет) |
 | Sheet Footer | 183:2078 | — |
@@ -132,6 +132,8 @@ npm run build-storybook
 
 **Alert** (`src/components/Alert`). `state`: `info`, `warning`, `error`, `success`; текст — `children`. Иконка «i» 16px (путь из Figma, один на все 4 состояния, цвет `currentColor` из `alert.*.icon`), отступ сверху 2. Padding 8, gap 8, radius 12, Manrope Regular 12. Ширина — 100% контейнера (358 в Figma = ширина мобильного экрана). `role="alert"` у error, `role="status"` у остальных. Решения: слои текста в Figma не привязаны к `alert/*/text` (Info — хардкод `#9ca3af`, остальные — `gray/450`), в коде взят токен `alert.*.text` (`#9ca3af`); текст макета про TON-адрес и потерю средств противоречит ограничению «только виртуальная валюта» → в stories нейтральный текст про монеты. Высота на 1px больше Figma (метрики шрифта). Stories повторяют Figma: Info, Warning, Error, Success, без Docs и All States.
 
+**BottomNavBar** (`src/components/BottomNavBar`). `BottomNavBar` — `<nav>` (`aria-label` по умолчанию «Main»), фон и верхняя рамка 1px из `bottom-nav-bar.nav-bar.*`, ширина 100% (390 в Figma = ширина экрана), пункты делят ширину поровну. `NavItem` — ссылка (`href`), `icon` (слот 20px), `selected` → `aria-current="page"`. Пункт: высота 63 = `2 × spacing-32 − 1px` (токена нет; вместе с рамкой бар = 64), padding 8/24, gap 2, Manrope Bold 11. Состояния Figma: Default, Hover (`:hover`, в stories `is-hover`), Pressed + Selected — один акцентный цвет для текущей страницы и для `:active`. Иконки home, trophy, credit card, account circle, clock — из Figma, в `nav-icons.tsx` (`currentColor`). Решения: фокус с клавиатуры в Figma нет → кольцо внутрь, как у MenuItem. Пункт на 1px уже Figma (метрики шрифта). Stories повторяют Figma: `Nav.item` — Default, Hover, Pressed; `Bottom Nav Bar` — Nav.items=5, 4, 3; без Docs и All States.
+
 ## 7. Шрифты и базовые стили
 
 - `src/styles/fonts.css` — `@fontsource/space-grotesk` и `@fontsource/manrope`, латиница, веса 400/600/700. Статические пакеты выбраны, потому что имена семейств совпадают с токенами (у variable-пакетов имена с суффиксом `Variable`).
@@ -140,7 +142,7 @@ npm run build-storybook
 
 ## 8. Что ещё не сделано
 
-- Компоненты: Bottom Nav Bar, Admin Nav Bar, Sheet Footer.
+- Компоненты: Admin Nav Bar, Sheet Footer.
 - Иконки: нет набора, в stories используются самодельные inline SVG (в Figma — placeholder «Diamond»).
 - Шрифт Inter: токен есть, файлов нет.
 - Кириллица: подключена только латиница.
