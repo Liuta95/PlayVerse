@@ -1,0 +1,62 @@
+/* Alert — from Figma "Alerts" (State: Info, Warning, Error, Success).
+   Every colour, space, radius and font comes from a design token (src/tokens/tokens.css). */
+.pv-alert {
+  --_bg: var(--alert-info-bg);
+  --_stroke: var(--alert-info-stroke);
+  --_icon: var(--alert-info-icon);
+  --_text: var(--alert-info-text);
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+  width: 100%;
+  padding: var(--spacing-8);
+  border: 1px solid var(--_stroke);
+  border-radius: var(--radius-12);
+  background: var(--_bg);
+}
+
+.pv-alert--warning {
+  --_bg: var(--alert-warning-bg);
+  --_stroke: var(--alert-warning-stroke);
+  --_icon: var(--alert-warning-icon);
+  --_text: var(--alert-warning-text);
+}
+
+.pv-alert--error {
+  --_bg: var(--alert-error-bg);
+  --_stroke: var(--alert-error-stroke);
+  --_icon: var(--alert-error-icon);
+  --_text: var(--alert-error-text);
+}
+
+.pv-alert--success {
+  --_bg: var(--alert-success-bg);
+  --_stroke: var(--alert-success-stroke);
+  --_icon: var(--alert-success-icon);
+  --_text: var(--alert-success-text);
+}
+
+.pv-alert__icon {
+  display: inline-flex;
+  flex: none;
+  padding-top: var(--spacing-2);
+  color: var(--_icon);
+}
+
+.pv-alert__icon > svg {
+  display: block;
+}
+
+.pv-alert__text {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  color: var(--_text);
+  font-family: var(--font-family-body), system-ui, sans-serif;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: normal;
+  overflow-wrap: break-word;
+}

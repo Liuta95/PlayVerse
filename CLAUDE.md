@@ -39,6 +39,7 @@ Claude Code читает этот файл перед каждой задаче�
 | Menu item (Main/Secondary × Default/Hover/Active) | 153:921 | `MenuItem` ✅ |
 | Checkbox (State × Status, 9 вариантов) | 204:2244 | `Checkbox` ✅ |
 | Tab (State × Selected, 7 вариантов) | 266:1663 | `Tab` ✅ |
+| Alert (Info / Warning / Error / Success) | 226:1670 | `Alert` ✅ |
 | Bottom Nav Bar | 1:898 | — |
 | Admin Nav Bar | 125:917 | — |
 | Logo icon | 153:974 | SVG `src/assets/playverse-logo.svg`, используется внутри `Sidebar` (отдельного компонента нет) |
@@ -128,6 +129,8 @@ npm run build-storybook
 **Checkbox** (`src/components/Checkbox`). Props: `label`, `checked`/`defaultChecked`, `error`, `disabled`. Нативный `input` внутри `label`, квадрат 20, галочка 14 (путь из Figma, `currentColor`). Hover есть в Figma → сделан. Решения: Error + Active в Figma не нарисован → выглядит как обычный отмеченный; фокус — обводка 2px `checkboxes.stroke.focus` поверх любого статуса; у неактивных Hover/Focused/Error/Disabled фона нет (так в Figma). Токены `checkboxes.icon.green/red` есть, но в макете не используются. Принудительные классы для docs: `is-hover`, `is-focus-visible`.
 
 **Tab** (`src/components/Tab`). Одна вкладка: `selected` (`aria-selected`), `disabled`, `role="tab"`. Ряд вкладок и переключение не делали: оборачивать в свой `role="tablist"`. 78×36, padding 8/12, radius 16, Manrope SemiBold 13. Токены `tabs.*` (21 шт., ссылаются на Semantic) добавлены в ноябре 2026. Решения: Focused в Figma = внутренняя рамка `border/accent` + внешняя 1px снаружи → в коде `border` + `box-shadow`; у Selected+Focused внешняя рамка в Figma привязана к `tabs/selected/bg/focused` (почти невидима), в коде взят `tabs.selected.stroke.focused`, чтобы фокус был виден; Disabled+Selected не нарисован. Принудительные классы для docs: `is-hover`, `is-focus-visible`. Stories повторяют Figma один в один (по просьбе пользователя, без Docs и All States): `Components/Tab/Unselected` — Default, Hover, Focused, Disabled; `Components/Tab/Selected` — Default, Hover, Focused.
+
+**Alert** (`src/components/Alert`). `state`: `info`, `warning`, `error`, `success`; текст — `children`. Иконка «i» 16px (путь из Figma, один на все 4 состояния, цвет `currentColor` из `alert.*.icon`), отступ сверху 2. Padding 8, gap 8, radius 12, Manrope Regular 12. Ширина — 100% контейнера (358 в Figma = ширина мобильного экрана). `role="alert"` у error, `role="status"` у остальных. Решения: слои текста в Figma не привязаны к `alert/*/text` (Info — хардкод `#9ca3af`, остальные — `gray/450`), в коде взят токен `alert.*.text` (`#9ca3af`); текст макета про TON-адрес и потерю средств противоречит ограничению «только виртуальная валюта» → в stories нейтральный текст про монеты. Высота на 1px больше Figma (метрики шрифта). Stories повторяют Figma: Info, Warning, Error, Success, без Docs и All States.
 
 ## 7. Шрифты и базовые стили
 
