@@ -6,7 +6,7 @@ const meta = {
   title: 'Components/Alert',
   component: Alert,
   parameters: { layout: 'padded' },
-  args: { children: 'You need 50 coins to join this tournament.', state: 'info' },
+  args: { children: 'Only send to a TON address. Other networks will lose the funds.', state: 'info' },
   argTypes: {
     children: { control: 'text', description: 'Figma "Text".' },
     state: { table: { disable: true } },
