@@ -65,8 +65,7 @@ npm run typecheck        # tsc -b --noEmit
 npm run build-storybook
 ```
 
-- `npm run typecheck` даёт 2 известные ошибки в демо-файлах Storybook (`src/stories/Button.tsx`, `Header.tsx`, неиспользуемый `React`). Они не наши. Свои файлы должны проходить чисто.
-- Папка `src/stories/` (Button, Header, Page, Configure.mdx) — шаблонные примеры Storybook с захардкоженным CSS. Они не используют токены. Их можно удалить целиком.
+- `npm run typecheck` должен проходить без ошибок. Шаблонные примеры Storybook (`src/stories/`) удалены в ноябре 2026.
 
 ## 4. Токены
 
@@ -149,7 +148,6 @@ npm run build-storybook
 - Иконки: нет набора, в stories используются самодельные inline SVG (в Figma — placeholder «Diamond»).
 - Шрифт Inter: токен есть, файлов нет.
 - Кириллица: подключена только латиница.
-- Удалить шаблонные примеры `src/stories/`.
 - Решить судьбу cash-out в Wallet (см. раздел 1).
 - Прототипные связи между экранами в Figma не настроены.
 
