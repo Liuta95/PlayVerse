@@ -40,6 +40,7 @@ Claude Code читает этот файл перед каждой задаче�
 | Checkbox (State × Status, 9 вариантов) | 204:2244 | `Checkbox` ✅ |
 | Tab (State × Selected, 7 вариантов) | 266:1663 | `Tab` ✅ |
 | Alert (Info / Warning / Error / Success) | 226:1670 | `Alert` ✅ |
+| Card (Rarity × State, 9 вариантов; карта-усилитель) | 289:1558 | — (только Figma) |
 | Bottom Nav Bar (Nav.items = 3/4/5) + Nav.item (213:3245) | 1:898 | `BottomNavBar`, `NavItem` ✅ |
 | Admin Nav Bar (Active = 4 пункта) | 125:917 | `AdminNavBar`, `AdminNavItem` ✅ |
 | Logo icon | 153:974 | SVG `src/assets/playverse-logo.svg`, используется внутри `Sidebar` (отдельного компонента нет) |
@@ -135,6 +136,16 @@ npm run build-storybook
 **Alert** (`src/components/Alert`). `state`: `info`, `warning`, `error`, `success`; текст — `children`. Иконка «i» 16px (путь из Figma, один на все 4 состояния, цвет `currentColor` из `alert.*.icon`), отступ сверху 2. Padding 8, gap 8, radius 12, Manrope Regular 12. Ширина — 100% контейнера (358 в Figma = ширина мобильного экрана). `role="alert"` у error, `role="status"` у остальных. Решения: слои текста в Figma не привязаны к `alert/*/text` (Info — хардкод `#9ca3af`, остальные — `gray/450`), в коде взят токен `alert.*.text` (`#9ca3af`); в stories текст из Figma («Only send to a TON address. Other networks will lose the funds.»; во всех четырёх состояниях в макете он один и тот же). Высота на 1px больше Figma (метрики шрифта). Stories повторяют Figma: Info, Warning, Error, Success, без Docs и All States.
 
 **BottomNavBar** (`src/components/BottomNavBar`). `BottomNavBar` — `<nav>` (`aria-label` по умолчанию «Main»), фон и верхняя рамка 1px из `bottom-nav-bar.nav-bar.*`, ширина 100% (390 в Figma = ширина экрана), пункты делят ширину поровну. `NavItem` — ссылка (`href`), `icon` (слот 20px), `selected` → `aria-current="page"`. Пункт: высота 63 = `2 × spacing-32 − 1px` (токена нет; вместе с рамкой бар = 64), padding 8/24, gap 2, Manrope Bold 11. Состояния Figma: Default, Hover (`:hover`, в stories `is-hover`), Pressed + Selected — один акцентный цвет для текущей страницы и для `:active`. Иконки home, trophy, credit card, account circle, clock — из Figma, в `nav-icons.tsx` (`currentColor`). Решения: фокус с клавиатуры в Figma нет → кольцо внутрь, как у MenuItem. Пункт на 1px уже Figma (метрики шрифта). Stories повторяют Figma: `Nav.item` — Default, Hover, Pressed; `Bottom Nav Bar` — Nav.items=5, 4, 3; без Docs и All States.
+
+## Карты-усилители (новая идея, ноябрь 2026)
+
+Идея взята из кейса Predictrum (карты как герои игры). В PlayVerse карта — усилитель, который игрок разыгрывает перед вопросом: 50/50, Double, Shield, Extra time, Skip. Перед вопросом предлагают 3 карты, игрок выбирает одну или пропускает.
+
+- **Figma, страница Components:** секция `Cards` (289:1438): компонент `Card` (289:1558) — Rarity Common/Rare/Epic × State Default/Selected/Disabled, свойства `Title`, `Description`, `Cost`, `Art` (instance swap на 5 иконок `Card Art / …`). Размер 114×168, три в ряд на экране 390.
+- **Figma, страница Flow:** экран `Choose a Card` (290:1456) в секции Ready screens, справа от остальных экранов квиза.
+- **Токены:** 24 переменные `cards/*` в коллекции `Component` (все ссылаются на Semantic): `cards/bg/*`, `cards/art/bg/*`, `cards/stroke/{common,rare,epic,disabled}`, `cards/rarity/*`, `cards/cost/*`, `cards/check/*`, `cards/icon/default`, `cards/title/*`, `cards/description/*`. **В `tokens.json` и код они ещё не выгружены** (там 379 токенов, в Figma после этого 403).
+- **Решения:** Rarity = цвет рамки и подписи (серый / фиолетовый / золотой); Selected = рамка 2 px, фон `surface/selected` и галочка; Disabled = приглушённые цвета и иконка с opacity 0.4; цена в красном, если карту нельзя сыграть. Арт карт пока иконки-заглушки (stroke, `cards/icon/default`), иллюстраций нет. Disabled в экране не показан.
+- **Не сделано:** компонент `Card` в коде, выгрузка токенов, остальные экраны механики (коллекция карт, колода в лобби, результат с эффектом карты), иллюстрации для карт.
 
 ## 7. Шрифты и базовые стили
 
