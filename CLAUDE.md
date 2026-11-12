@@ -60,6 +60,7 @@ Node 24, npm 11.
 ```bash
 npm run storybook        # Storybook на :6006
 npm run tokens           # tokens.json → tokens.css
+npm run chromatic        # публикация Storybook в Chromatic (токен в .env: CHROMATIC_PROJECT_TOKEN)
 npm run typecheck        # tsc -b --noEmit
 npm run build-storybook
 ```
