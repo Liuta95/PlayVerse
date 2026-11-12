@@ -145,7 +145,7 @@ npm run build-storybook
 
 ## 8. Что ещё не сделано
 
-- Компоненты: Admin Nav Bar, Sheet Footer.
+- Компоненты: Sheet Footer.
 - Иконки: нет набора, в stories используются самодельные inline SVG (в Figma — placeholder «Diamond»).
 - Шрифт Inter: токен есть, файлов нет.
 - Кириллица: подключена только латиница.
