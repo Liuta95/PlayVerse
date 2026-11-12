@@ -378,4 +378,26 @@
 
   --currency-coin: var(--color-yellow-400);
   --currency-coin-border: var(--color-yellow-800);
+
+  --tabs-unselected-bg-default: var(--surface-panel);
+  --tabs-unselected-bg-hover: var(--surface-panel);
+  --tabs-unselected-bg-focused: var(--surface-panel);
+  --tabs-unselected-bg-disabled: var(--surface-field);
+  --tabs-unselected-stroke-default: var(--border-strong);
+  --tabs-unselected-stroke-hover: var(--border-accent-light);
+  --tabs-unselected-stroke-focused: var(--border-focus);
+  --tabs-unselected-stroke-disabled: var(--border-default);
+  --tabs-unselected-text-default: var(--content-muted);
+  --tabs-unselected-text-focused: var(--content-on-action);
+  --tabs-unselected-text-hover: var(--content-on-action);
+  --tabs-unselected-text-disabled: var(--content-disabled);
+  --tabs-selected-bg-default: var(--surface-selected);
+  --tabs-selected-bg-focused: var(--surface-selected);
+  --tabs-selected-bg-hover: var(--surface-accent-tint);
+  --tabs-selected-stroke-default: var(--border-accent);
+  --tabs-selected-stroke-focused: var(--border-focus);
+  --tabs-selected-stroke-hover: var(--border-accent-light);
+  --tabs-selected-text-default: var(--content-on-action);
+  --tabs-selected-text-focused: var(--content-on-action);
+  --tabs-selected-text-hover: var(--content-on-action);
 }

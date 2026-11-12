@@ -38,6 +38,7 @@ Claude Code читает этот файл перед каждой задаче�
 | Sidebar (Expanded / Collapsed) | 153:1433 | `Sidebar` ✅ |
 | Menu item (Main/Secondary × Default/Hover/Active) | 153:921 | `MenuItem` ✅ |
 | Checkbox (State × Status, 9 вариантов) | 204:2244 | `Checkbox` ✅ |
+| Tab (State × Selected, 7 вариантов) | 266:1663 | `Tab` ✅ |
 | Bottom Nav Bar | 1:898 | — |
 | Admin Nav Bar | 125:917 | — |
 | Logo icon | 153:974 | SVG `src/assets/playverse-logo.svg`, используется внутри `Sidebar` (отдельного компонента нет) |
@@ -67,7 +68,7 @@ npm run build-storybook
 
 ## 4. Токены
 
-Источник правды — **переменные Figma**. Они выгружаются в `src/tokens/tokens.json` (W3C DTCG, 358 токенов), оттуда `npm run tokens` генерирует `src/tokens/tokens.css` (CSS-переменные в `:root`). Оба файла руками не править.
+Источник правды — **переменные Figma**. Они выгружаются в `src/tokens/tokens.json` (W3C DTCG, 379 токенов), оттуда `npm run tokens` генерирует `src/tokens/tokens.css` (CSS-переменные в `:root`). Оба файла руками не править.
 
 **Три уровня, каждый ссылается на предыдущий:**
 
@@ -75,7 +76,7 @@ npm run build-storybook
 | --- | --- | --- | --- | --- |
 | 1. Primitives | `Primitives` (раньше `Colors`) | `color.<hue>.<step>` | `--color-gray-900` | 55 |
 | 2. Semantic | `Semantic` | `action.*`, `content.*`, `surface.*`, `border.*`, `feedback.*`, `currency.*` | `--action-primary`, `--content-muted`, `--surface-field`, `--border-strong`, `--feedback-success-bg`, `--currency-coin` | 63 |
-| 3. Component | `Component` (раньше `Component Colors`) | `buttons.*`, `chips.*`, `inputs.*`, `sidebar.*`, `checkboxes.*`, `coins.*`, `app-bars.*`, `BottomNavBar.*`, `Alert.*` | `--buttons-primary-default-background` | 187 |
+| 3. Component | `Component` (раньше `Component Colors`) | `buttons.*`, `chips.*`, `inputs.*`, `sidebar.*`, `checkboxes.*`, `tabs.*`, `coins.*`, `app-bars.*`, `BottomNavBar.*`, `Alert.*` | `--buttons-primary-default-background` | 208 |
 | — | `Spacing`, `Radius`, `Typography` | `spacing.*`, `radius.*`, `font.*`, `letter-spacing.*`, `line-height.*` | `--spacing-16`, `--radius-12`, `--font-size-14` | 13 / 10 / 30 |
 
 Цепочка: `--buttons-primary-default-background` → `--action-primary` → `--color-purple-700` → `#6d28d9`.
@@ -125,6 +126,8 @@ npm run build-storybook
 **Sidebar** (`src/components/Sidebar`). `collapsed` (Expanded 240 / Collapsed 80), `onCollapsedChange` (без него переключатель не показывается), `user` (карточка; в свёрнутом виде только аватар), `navLabel`. Дети — `MenuItem`; в свёрнутом состоянии пункты 44×44 только с иконкой (подписи остаются для скринридеров), подпункты и шевроны скрыты — это делает CSS сайдбара. Логотип — SVG, слово «Play» `gray/50` + «Verse» `purple/400`, Space Grotesk Bold 18, letter-spacing −2%. Ширины 240/80 собраны как `6 × spacing-40` и `2 × spacing-40` (токена нет); два зазора по 10px захардкожены (нет `spacing-10`). Иконки меню в stories — самодельные заглушки из `src/components/placeholder-icons.tsx`.
 
 **Checkbox** (`src/components/Checkbox`). Props: `label`, `checked`/`defaultChecked`, `error`, `disabled`. Нативный `input` внутри `label`, квадрат 20, галочка 14 (путь из Figma, `currentColor`). Hover есть в Figma → сделан. Решения: Error + Active в Figma не нарисован → выглядит как обычный отмеченный; фокус — обводка 2px `checkboxes.stroke.focus` поверх любого статуса; у неактивных Hover/Focused/Error/Disabled фона нет (так в Figma). Токены `checkboxes.icon.green/red` есть, но в макете не используются. Принудительные классы для docs: `is-hover`, `is-focus-visible`.
+
+**Tab** (`src/components/Tab`). Одна вкладка: `selected` (`aria-selected`), `disabled`, `role="tab"`. Ряд вкладок и переключение не делали: оборачивать в свой `role="tablist"`. 78×36, padding 8/12, radius 16, Manrope SemiBold 13. Токены `tabs.*` (21 шт., ссылаются на Semantic) добавлены в ноябре 2026. Решения: Focused в Figma = внутренняя рамка `border/accent` + внешняя 1px снаружи → в коде `border` + `box-shadow`; у Selected+Focused внешняя рамка в Figma привязана к `tabs/selected/bg/focused` (почти невидима), в коде взят `tabs.selected.stroke.focused`, чтобы фокус был виден; Disabled+Selected не нарисован. Принудительные классы для docs: `is-hover`, `is-focus-visible`. Stories повторяют Figma один в один (по просьбе пользователя, без Docs и All States): `Components/Tab/Unselected` — Default, Hover, Focused, Disabled; `Components/Tab/Selected` — Default, Hover, Focused.
 
 ## 7. Шрифты и базовые стили
 

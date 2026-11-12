@@ -1,0 +1,70 @@
+/* Tab — from Figma "Tabs" (State: Default, Hover, Focused, Disabled × Selected: No, Yes).
+   Every colour, space, radius and font comes from a design token (src/tokens/tokens.css). */
+.pv-tab {
+  --_bg: var(--tabs-unselected-bg-default);
+  --_stroke: var(--tabs-unselected-stroke-default);
+  --_text: var(--tabs-unselected-text-default);
+  --_ring: transparent;
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: var(--spacing-8) var(--spacing-12);
+  border: 1px solid var(--_stroke);
+  border-radius: var(--radius-16);
+  background: var(--_bg);
+  box-shadow: 0 0 0 1px var(--_ring);
+  color: var(--_text);
+  font-family: var(--font-family-body), system-ui, sans-serif;
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-semibold);
+  line-height: normal;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pv-tab:is(:hover, .is-hover) {
+  --_bg: var(--tabs-unselected-bg-hover);
+  --_stroke: var(--tabs-unselected-stroke-hover);
+  --_text: var(--tabs-unselected-text-hover);
+}
+
+.pv-tab.pv-tab--selected {
+  --_bg: var(--tabs-selected-bg-default);
+  --_stroke: var(--tabs-selected-stroke-default);
+  --_text: var(--tabs-selected-text-default);
+}
+
+.pv-tab.pv-tab--selected:is(:hover, .is-hover) {
+  --_bg: var(--tabs-selected-bg-hover);
+  --_stroke: var(--tabs-selected-stroke-hover);
+  --_text: var(--tabs-selected-text-hover);
+}
+
+/* Focused: inner accent stroke + 1px outer ring (Figma: stroke "Outside" around an inner container). */
+.pv-tab:is(:focus-visible, .is-focus-visible) {
+  --_bg: var(--tabs-unselected-bg-focused);
+  --_stroke: var(--border-accent);
+  --_text: var(--tabs-unselected-text-focused);
+  --_ring: var(--tabs-unselected-stroke-focused);
+}
+
+.pv-tab.pv-tab--selected:is(:focus-visible, .is-focus-visible) {
+  --_bg: var(--tabs-selected-bg-focused);
+  --_stroke: var(--border-accent);
+  --_text: var(--tabs-selected-text-focused);
+  --_ring: var(--tabs-selected-stroke-focused);
+}
+
+.pv-tab.pv-tab:disabled {
+  --_bg: var(--tabs-unselected-bg-disabled);
+  --_stroke: var(--tabs-unselected-stroke-disabled);
+  --_text: var(--tabs-unselected-text-disabled);
+  --_ring: transparent;
+  cursor: not-allowed;
+}
