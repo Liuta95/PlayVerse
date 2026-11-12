@@ -63,6 +63,21 @@ const Swatch = ({ varName, size = 56 }: { varName: string; size?: number }) => (
 );
 
 /** Primitive colour ramps: color.<hue>.<step> */
+/** Total number of tokens in tokens.json, so the docs text never goes stale. */
+export const TokenCount = () => <>{flat.length}</>;
+
+/** The component token groups shown on this page, as inline code. */
+export const ComponentGroupNames = () => (
+  <>
+    {COMPONENT_GROUPS.map((group, index) => (
+      <span key={group}>
+        {index > 0 && ', '}
+        <code>{group}</code>
+      </span>
+    ))}
+  </>
+);
+
 export const ColorRamps = () => {
   const hues = Object.keys((tokens as { color: Record<string, unknown> }).color);
   return (
@@ -91,7 +106,7 @@ export const ColorRamps = () => {
 };
 
 const SEMANTIC_GROUPS = ['action', 'content', 'surface', 'border', 'feedback', 'currency'];
-const COMPONENT_GROUPS = ['buttons', 'chips', 'inputs', 'sidebar', 'checkboxes', 'coins', 'app-bars', 'BottomNavBar', 'Alert'];
+const COMPONENT_GROUPS = ['buttons', 'chips', 'inputs', 'sidebar', 'checkboxes', 'tabs', 'coins', 'app-bars', 'BottomNavBar', 'Alert'];
 
 /** Token groups with the alias each token points to. */
 const TokenGroups = ({ groups }: { groups: string[] }) => (

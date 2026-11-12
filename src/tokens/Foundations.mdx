@@ -1,11 +1,11 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { ColorRamps, SemanticColors, ComponentColors, Scales, Typography } from './Foundations';
+import { ColorRamps, SemanticColors, ComponentColors, ComponentGroupNames, Scales, Typography, TokenCount } from './Foundations';
 
 <Meta title="PlayVerse/Foundations" />
 
 # PlayVerse foundations
 
-Tokens come from the **Game-PlayVerse** Figma Variables into `src/tokens/tokens.json` (W3C DTCG, 358 tokens).
+Tokens come from the **Game-PlayVerse** Figma Variables into `src/tokens/tokens.json` (W3C DTCG, <TokenCount /> tokens).
 `npm run tokens` generates `src/tokens/tokens.css` from it. Never edit either file by hand: update the Variables in Figma and re-export.
 
 Three levels, each one refers to the level above it:
@@ -18,7 +18,7 @@ Example chain: `--buttons-primary-default-background` → `--action-primary` →
 
 Spacing, radius and typography have their own collections: `--spacing-16`, `--radius-12`, `--font-size-14`, `--line-height-relaxed`.
 
-In components use the component token, or the semantic one when there is no component token. Primitives only as a last resort. All component groups (`buttons`, `chips`, `inputs`, `sidebar`, `checkboxes`, `coins`, `app-bars`, `BottomNavBar`, `Alert`) point at semantic tokens.
+In components use the component token, or the semantic one when there is no component token. Primitives only as a last resort. All component groups (<ComponentGroupNames />) point at semantic tokens.
 
 ## Colors
 
